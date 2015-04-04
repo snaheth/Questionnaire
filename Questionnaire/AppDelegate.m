@@ -10,6 +10,7 @@
 
 #import <Parse/Parse.h>
 #import "OpeningViewController.h"
+#import "Reachability.h"
 
 @interface AppDelegate ()
 
@@ -26,6 +27,7 @@
                   clientKey:@"l3fBVwV2wQYQsdGPnx2xQKcoOPwvhbJspEGmVdaa"];
     [PFTwitterUtils initializeWithConsumerKey:@"fdTrgHc7bdcusuUPWIg7QuPDC" consumerSecret:@"iTKAD2ZZmZ3bIs0KJD8jo5g41OSPwKEVmiKKKJ8SynCLNMHvjJ"];
     
+    
     // Appearance
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1]];
@@ -33,8 +35,26 @@
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     [[UITableView appearance] setBackgroundColor:[UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1]];
-    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    // Allocate a reachability object
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.parse.com"];
+    reach.reachableBlock = ^(Reachability*reach)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"REACHABLE!");
+        });
+    };
+    
+    reach.unreachableBlock = ^(Reachability*reach)
+    {
+        NSLog(@"UNREACHABLE!");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connect to the internet." message:@"You need it to use the app properly" delegate:nil cancelButtonTitle:@"OK." otherButtonTitles:nil,    nil];
+        [alert show];
+    };
+    
+    // Start the notifier, which will cause the reachability object to retain itself!
+    [reach startNotifier];
     
     return YES;
 }

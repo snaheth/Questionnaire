@@ -25,6 +25,10 @@
     NSArray *questions;
 }
 
+-(void)addQuestionRight{
+    [self addQuestion];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
