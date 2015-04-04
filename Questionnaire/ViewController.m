@@ -39,7 +39,6 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:rightImage.CGImage scale:4.5f orientation:UIImageOrientationUp] style:UIBarButtonItemStylePlain target:self action:@selector(addQuestionRight)];
     self.navigationItem.rightBarButtonItem = rightButton;
     self.navigationItem.title = @"Questions";
-    
     if ([PFUser currentUser] == nil) {
         OpeningViewController *open = [[OpeningViewController alloc] init];
         [self presentViewController:open animated:YES completion:nil];
