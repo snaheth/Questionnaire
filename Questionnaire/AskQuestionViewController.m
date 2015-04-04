@@ -10,6 +10,8 @@
 
 #import <Parse/Parse.h>
 
+#import "SwitchTableViewCell.h"
+
 @interface AskQuestionViewController ()
 
 @end
@@ -23,9 +25,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Header view
+    headerView = [[UIView alloc] init];
+    
+    // Text view
     textView = [[UITextView alloc] init];
     textView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    textView.translatesAutoresizingMaskIntoConstraints = false;
     [headerView addSubview:textView];
+    
+    // Constraints
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    NSDictionary *views = @{
+                            @"textView": textView,
+                            };
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[textView]|" options:0 metrics:nil views:views]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[textView]-10-|" options:0 metrics:nil views:views]];
+    [headerView addConstraints:constraints];
     
     // Bar button items
     UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissViewController)];
@@ -36,6 +52,7 @@
     
     // Register cell
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    [self.tableView registerClass:[SwitchTableViewCell class] forCellReuseIdentifier:@"SwitchCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,19 +106,34 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 1;
+    if (section == 0) {
+        return 1;
+    }
+    else {
+        return 1;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell;
     
     // Configure the cell...
+    if (indexPath.section == 0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SwitchCell" forIndexPath:indexPath];
+        SwitchTableViewCell *switchCell = (SwitchTableViewCell *)cell;
+        switchCell.textLabel.text = @"Is a Yes / No question?";
+        switchCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        
+    }
     
     return cell;
 }
