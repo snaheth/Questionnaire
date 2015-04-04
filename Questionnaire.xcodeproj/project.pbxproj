@@ -11,6 +11,11 @@
 		9783B4FB1AD0190F00A01CD7 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9783B4F91AD0190F00A01CD7 /* Roboto-Regular.ttf */; };
 		9783B4FC1AD0190F00A01CD7 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9783B4FA1AD0190F00A01CD7 /* Roboto-Bold.ttf */; };
 		9783B5021AD020D900A01CD7 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9783B5011AD020D900A01CD7 /* RegistrationViewController.m */; };
+		978AAD601AD0688E00962FF9 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978AAD5F1AD0688E00962FF9 /* FacebookSDK.framework */; };
+		978AAD651AD0698000962FF9 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978AAD611AD0698000962FF9 /* ParseCrashReporting.framework */; };
+		978AAD661AD0698000962FF9 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978AAD621AD0698000962FF9 /* ParseFacebookUtils.framework */; };
+		978AAD671AD0698000962FF9 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978AAD631AD0698000962FF9 /* ParseFacebookUtilsV4.framework */; };
+		978AAD681AD0698000962FF9 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978AAD641AD0698000962FF9 /* ParseUI.framework */; };
 		97E0772E1AD02C6400756AC8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E0772D1AD02C6400756AC8 /* Reachability.m */; };
 		97E077301AD0531D00756AC8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97E0772F1AD0531D00756AC8 /* Lato-Regular.ttf */; };
 		A71B1E951ACFDA100072EE98 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A71B1E941ACFDA100072EE98 /* main.m */; };
@@ -60,6 +65,11 @@
 		9783B4FA1AD0190F00A01CD7 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		9783B5001AD020D900A01CD7 /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
 		9783B5011AD020D900A01CD7 /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
+		978AAD5F1AD0688E00962FF9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "../../Downloads/ParsePlatform-IntegratingFacebookTutorial-931882e 2/IntegratingFacebookTutorial-iOS/FacebookSDK.framework"; sourceTree = "<group>"; };
+		978AAD611AD0698000962FF9 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = "../../Downloads/parse-library-1.7.1/ParseCrashReporting.framework"; sourceTree = "<group>"; };
+		978AAD621AD0698000962FF9 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../Downloads/parse-library-1.7.1/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
+		978AAD631AD0698000962FF9 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "../../Downloads/parse-library-1.7.1/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
+		978AAD641AD0698000962FF9 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "../../Downloads/parse-library-1.7.1/ParseUI.framework"; sourceTree = "<group>"; };
 		97E0772C1AD02C6400756AC8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		97E0772D1AD02C6400756AC8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		97E0772F1AD0531D00756AC8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -118,11 +128,16 @@
 				A71B1ECC1ACFDF140072EE98 /* Security.framework in Frameworks */,
 				A71B1ECA1ACFDF0B0072EE98 /* QuartzCore.framework in Frameworks */,
 				A71B1EC81ACFDF020072EE98 /* MobileCoreServices.framework in Frameworks */,
+				978AAD651AD0698000962FF9 /* ParseCrashReporting.framework in Frameworks */,
+				978AAD661AD0698000962FF9 /* ParseFacebookUtils.framework in Frameworks */,
+				978AAD671AD0698000962FF9 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				978AAD681AD0698000962FF9 /* ParseUI.framework in Frameworks */,
 				A71B1EC61ACFDEFC0072EE98 /* CoreLocation.framework in Frameworks */,
 				A71B1EC41ACFDEF40072EE98 /* CoreGraphics.framework in Frameworks */,
 				A71B1EC21ACFDEED0072EE98 /* CFNetwork.framework in Frameworks */,
 				A71B1EC01ACFDEE60072EE98 /* AudioToolbox.framework in Frameworks */,
 				A71B1EBD1ACFDA800072EE98 /* ParseUI.framework in Frameworks */,
+				978AAD601AD0688E00962FF9 /* FacebookSDK.framework in Frameworks */,
 				A71B1EBC1ACFDA800072EE98 /* Parse.framework in Frameworks */,
 				A71B1EBB1ACFDA800072EE98 /* Bolts.framework in Frameworks */,
 			);
@@ -227,6 +242,11 @@
 		A71B1EBE1ACFDA860072EE98 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				978AAD611AD0698000962FF9 /* ParseCrashReporting.framework */,
+				978AAD621AD0698000962FF9 /* ParseFacebookUtils.framework */,
+				978AAD631AD0698000962FF9 /* ParseFacebookUtilsV4.framework */,
+				978AAD641AD0698000962FF9 /* ParseUI.framework */,
+				978AAD5F1AD0688E00962FF9 /* FacebookSDK.framework */,
 				A79980CC1AD01BE800BBE9C5 /* Accounts.framework */,
 				A79980CA1AD01BDC00BBE9C5 /* Social.framework */,
 				A71B1ED31ACFDF310072EE98 /* libsqlite3.dylib */,
@@ -507,6 +527,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"/Users/Maximilian/Downloads/parse-library-1",
+					"/Users/snaheth/Downloads/ParsePlatform-IntegratingFacebookTutorial-931882e",
+					"2/IntegratingFacebookTutorial-iOS",
+					"/Users/snaheth/Downloads/parse-library-1.7.1",
 				);
 				INFOPLIST_FILE = Questionnaire/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -524,6 +547,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"/Users/Maximilian/Downloads/parse-library-1",
+					"/Users/snaheth/Downloads/ParsePlatform-IntegratingFacebookTutorial-931882e",
+					"2/IntegratingFacebookTutorial-iOS",
+					"/Users/snaheth/Downloads/parse-library-1.7.1",
 				);
 				INFOPLIST_FILE = Questionnaire/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

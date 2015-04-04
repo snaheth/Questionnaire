@@ -10,6 +10,7 @@
 
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 @interface OpeningViewController () <UITextFieldDelegate>
 
@@ -53,6 +54,15 @@
 
 - (void)facebookLogin:(UIButton *)facebookButton {
     NSLog(@"Registering the FACEBOOK way...");
+    [PFFacebookUtils logInWithPermissions:@[@"public_profile" , @"email", @"user_friends"] block:^(PFUser *user, NSError *err){
+        if(err){
+            NSLog(@"Error occured!");
+        }
+        else{
+            NSLog(@"You logged in!");
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
 }
 
 - (void)twitterLogin:(UIButton *)twitterButton {
