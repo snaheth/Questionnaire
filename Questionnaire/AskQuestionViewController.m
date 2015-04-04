@@ -20,6 +20,10 @@
     UITextView *textView;
 }
 
+-(BOOL)prefersStatusBarHidden{
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

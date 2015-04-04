@@ -28,7 +28,6 @@
     // Do any additional setup after loading the view.
     
     //Background color.
-    self.view.backgroundColor = [UIColor colorWithRed:108/255.0 green:137/255.0 blue:168/255.0 alpha:1.0f];
     
     //App logo.
     UIImage *logoImage = [UIImage imageNamed:@"OpeningPageLogo"];

@@ -29,6 +29,10 @@
     [self addQuestion];
 }
 
+-(BOOL)prefersStatusBarHidden{
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

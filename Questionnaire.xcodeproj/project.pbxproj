@@ -12,6 +12,7 @@
 		9783B4FC1AD0190F00A01CD7 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9783B4FA1AD0190F00A01CD7 /* Roboto-Bold.ttf */; };
 		9783B5021AD020D900A01CD7 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9783B5011AD020D900A01CD7 /* RegistrationViewController.m */; };
 		97E0772E1AD02C6400756AC8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E0772D1AD02C6400756AC8 /* Reachability.m */; };
+		97E077301AD0531D00756AC8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97E0772F1AD0531D00756AC8 /* Lato-Regular.ttf */; };
 		A71B1E951ACFDA100072EE98 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A71B1E941ACFDA100072EE98 /* main.m */; };
 		A71B1E981ACFDA100072EE98 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A71B1E971ACFDA100072EE98 /* AppDelegate.m */; };
 		A71B1E9B1ACFDA100072EE98 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71B1E9A1ACFDA100072EE98 /* ViewController.m */; };
@@ -60,6 +61,7 @@
 		9783B5011AD020D900A01CD7 /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
 		97E0772C1AD02C6400756AC8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		97E0772D1AD02C6400756AC8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		97E0772F1AD0531D00756AC8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		A71B1E8F1ACFDA100072EE98 /* Questionnaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Questionnaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71B1E931ACFDA100072EE98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A71B1E941ACFDA100072EE98 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 		97B0F2731AD0242600226CFF /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				97E0772F1AD0531D00756AC8 /* Lato-Regular.ttf */,
 				9783B4F91AD0190F00A01CD7 /* Roboto-Regular.ttf */,
 				9783B4FA1AD0190F00A01CD7 /* Roboto-Bold.ttf */,
 			);
@@ -337,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A71B1E9E1ACFDA100072EE98 /* Main.storyboard in Resources */,
+				97E077301AD0531D00756AC8 /* Lato-Regular.ttf in Resources */,
 				A71B1EA31ACFDA100072EE98 /* LaunchScreen.xib in Resources */,
 				9783B4FC1AD0190F00A01CD7 /* Roboto-Bold.ttf in Resources */,
 				9783B4FB1AD0190F00A01CD7 /* Roboto-Regular.ttf in Resources */,
