@@ -24,11 +24,15 @@
     NSArray *questions;
 }
 
+-(void)addQuestionButton{
+    [self addQuestion];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
-    
-    // Do any additional setup after loading the view, typically from a nib.
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"AddButton"].CGImage scale:4.5f orientation:UIImageOrientationUp] style:UIBarButtonItemStylePlain target:self action:@selector(addQuestion)];
+    rightButton.tintColor = [UIColor colorWithRed:218/255.0f green:218/255.0f blue:218/255.0f alpha:1.0f];
+    self.navigationItem.rightBarButtonItem = rightButton;
     
     UIView *titleView = [[UIView alloc] init];
     
