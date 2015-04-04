@@ -14,10 +14,6 @@
 
 @implementation RegistrationViewController
 
--(BOOL)prefersStatusBarHidden{
-    return YES;
-}
-
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
