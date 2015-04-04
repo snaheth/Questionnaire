@@ -27,24 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1];
     
     if ([PFUser currentUser] == nil) {
         OpeningViewController *open = [[OpeningViewController alloc] init];
         [self presentViewController:open animated:YES completion:nil];
-        
-        
-        
-        //[PFUser logInWithUsername:@"MaxHasADHD" password:@"testing"];
-        /*
-        UIImage *logo = [[UIImage imageNamed:@"975-balloon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        UIImageView *logoImageView = [[UIImageView alloc] initWithImage:logo];
-        logoImageView.tintColor = [UIColor blueColor];
-        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
-        signUpViewController.fields = PFSignUpFieldsDefault;
-        signUpViewController.signUpView.logo = logoImageView;
-        signUpViewController.signUpView.emailAsUsername = true;
-        [self presentViewController:signUpViewController animated:true completion:nil];
-         */
     }
     else {
         

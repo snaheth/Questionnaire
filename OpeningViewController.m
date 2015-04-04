@@ -8,46 +8,63 @@
 
 #import "OpeningViewController.h"
 
-@interface OpeningViewController ()
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+
+@interface OpeningViewController () <UITextFieldDelegate>
 
 @end
 
 @implementation OpeningViewController
-
--(BOOL)prefersStatusBarHidden{
-    return YES;
+{
+    UITextField *userNameField;
+    UITextField *passwordField;
 }
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupBasicUI];
 }
 
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
+#pragma mark - TextFieldDelegate
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
 }
 
+#pragma mark - Actions
 
--(void)normalLogin:(UIButton *)loginButton{
+- (void)normalLogin:(UIButton *)loginButton {
     NSLog(@"Logging in the NORMAL way...");
+    [PFUser logInWithUsername:userNameField.text password:passwordField.text];
 }
 
--(void)registerWithoutSocialNetwork{
+- (void)registerWithoutSocialNetwork {
     NSLog(@"Registering the NORMAL way...");
+   
 }
 
--(void)facebookLogin:(UIButton *)facebookButton{
+- (void)facebookLogin:(UIButton *)facebookButton {
     NSLog(@"Registering the FACEBOOK way...");
 }
 
--(void)twitterLogin:(UIButton *)twitterButton{
+- (void)twitterLogin:(UIButton *)twitterButton {
     NSLog(@"Registering the TWITTER way...");
+    [PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
+        NSLog(@"%@", error);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 
-
--(void)setupBasicUI{
+- (void)setupBasicUI{
     //Background color.
     self.view.backgroundColor = [UIColor colorWithRed:90/255.0 green:140/255.0 blue:195/255.0 alpha:1.0f];
     
@@ -82,7 +99,7 @@
     [self.view addSubview:title];
     
     //Username Field
-    UITextField *userNameField = [[UITextField alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 175/2.0, 427/2.0f, 175, 53)];
+    userNameField = [[UITextField alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 175/2.0, 427/2.0f, 175, 53)];
     [userNameField setDelegate:self];
     userNameField.textColor = [UIColor colorWithRed:167/255.0f green:223/255.0f blue:246/255.0f alpha:1.0f];
     userNameField.borderStyle = UITextBorderStyleNone;
@@ -101,7 +118,7 @@
     [self.view.layer addSublayer:line];
     
     //Password Field
-    UITextField *passwordField = [[UITextField alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 175/2.0, 532/2.0f, 175, 53)];
+    passwordField = [[UITextField alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 175/2.0, 532/2.0f, 175, 53)];
     passwordField.secureTextEntry = YES;
     [passwordField setDelegate:self];
     passwordField.textColor = [UIColor colorWithRed:167/255.0f green:223/255.0f blue:246/255.0f alpha:1.0f];
