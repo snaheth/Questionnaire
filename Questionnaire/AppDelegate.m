@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 
+#import <Parse/Parse.h>
+#import "OpeningViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +20,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"1KdLz3fYkj1JnT2L8bDhVDyGjEbRY9sv14cjrhqp"
+                  clientKey:@"l3fBVwV2wQYQsdGPnx2xQKcoOPwvhbJspEGmVdaa"];
+    
+    /*
+     If not logged in:
+    self.window.rootViewController = [[OpeningViewController alloc] init];
+    Else...do nothing.
+     */
+    
     return YES;
 }
 
