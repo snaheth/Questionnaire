@@ -36,6 +36,7 @@
 		A759BD871AD03975001464D5 /* FriendQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A759BD861AD03975001464D5 /* FriendQuestionsViewController.m */; };
 		A759BD8A1AD03981001464D5 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A759BD891AD03981001464D5 /* ProfileViewController.m */; };
 		A759BD8D1AD061CE001464D5 /* SwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A759BD8C1AD061CE001464D5 /* SwitchTableViewCell.m */; };
+		A759BD951AD072E3001464D5 /* MLTextFieldTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A759BD941AD072E3001464D5 /* MLTextFieldTableCell.m */; };
 		A79980CB1AD01BDC00BBE9C5 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79980CA1AD01BDC00BBE9C5 /* Social.framework */; };
 		A79980CD1AD01BE800BBE9C5 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79980CC1AD01BE800BBE9C5 /* Accounts.framework */; };
 		A79980D81AD02A5700BBE9C5 /* QuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A79980D71AD02A5700BBE9C5 /* QuestionTableViewCell.m */; };
@@ -95,6 +96,8 @@
 		A759BD891AD03981001464D5 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		A759BD8B1AD061CE001464D5 /* SwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchTableViewCell.h; sourceTree = "<group>"; };
 		A759BD8C1AD061CE001464D5 /* SwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchTableViewCell.m; sourceTree = "<group>"; };
+		A759BD931AD072E3001464D5 /* MLTextFieldTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLTextFieldTableCell.h; sourceTree = "<group>"; };
+		A759BD941AD072E3001464D5 /* MLTextFieldTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLTextFieldTableCell.m; sourceTree = "<group>"; };
 		A79980CA1AD01BDC00BBE9C5 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A79980CC1AD01BE800BBE9C5 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		A79980D61AD02A5700BBE9C5 /* QuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionTableViewCell.h; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 				A79980D71AD02A5700BBE9C5 /* QuestionTableViewCell.m */,
 				A759BD8B1AD061CE001464D5 /* SwitchTableViewCell.h */,
 				A759BD8C1AD061CE001464D5 /* SwitchTableViewCell.m */,
+				A759BD931AD072E3001464D5 /* MLTextFieldTableCell.h */,
+				A759BD941AD072E3001464D5 /* MLTextFieldTableCell.m */,
 			);
 			name = "Table view cells";
 			sourceTree = "<group>";
@@ -379,6 +384,7 @@
 				A759BD8A1AD03981001464D5 /* ProfileViewController.m in Sources */,
 				A71B1E951ACFDA100072EE98 /* main.m in Sources */,
 				9783B5021AD020D900A01CD7 /* RegistrationViewController.m in Sources */,
+				A759BD951AD072E3001464D5 /* MLTextFieldTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

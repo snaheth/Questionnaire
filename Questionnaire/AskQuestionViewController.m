@@ -11,8 +11,15 @@
 #import <Parse/Parse.h>
 
 #import "SwitchTableViewCell.h"
+#import "MLTextFieldTableCell.h"
 
-@interface AskQuestionViewController ()
+typedef NS_ENUM(NSInteger, QuestionType) {
+    QuestionTypeYesNo = 0,
+    QuestionTypeOpen,
+    QuestionTypeMutlipleChoice,
+};
+
+@interface AskQuestionViewController () <MLTextFieldFullTableViewCellDelegate>
 
 @end
 
@@ -20,13 +27,32 @@
 {
     UIView *headerView;
     UITextView *textView;
+    QuestionType questionType;
+    
+    NSInteger numberOfMutlipleChoiceAnswers;
+    NSMutableArray *multipleChoiceAnswers;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Ask Question";
+    
+    // Default question type
+    questionType = QuestionTypeYesNo;
+    numberOfMutlipleChoiceAnswers = 0;
+    multipleChoiceAnswers = [[NSMutableArray alloc] init];
+    
     // Header view
     headerView = [[UIView alloc] init];
+    
+    // Segment Control
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Yes/No",@"Open",@"Multiple-Choice"]];
+    segmentedControl.tintColor = [UIColor whiteColor];
+    segmentedControl.selectedSegmentIndex = 0;
+    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    segmentedControl.translatesAutoresizingMaskIntoConstraints = false;
+    [headerView addSubview:segmentedControl];
     
     // Text view
     textView = [[UITextView alloc] init];
@@ -38,9 +64,11 @@
     NSMutableArray *constraints = [[NSMutableArray alloc] init];
     NSDictionary *views = @{
                             @"textView": textView,
+                            @"segmentedControl": segmentedControl,
                             };
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[textView]|" options:0 metrics:nil views:views]];
-    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[textView]-10-|" options:0 metrics:nil views:views]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[segmentedControl]|" options:0 metrics:nil views:views]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[segmentedControl(44)][textView]-10-|" options:0 metrics:nil views:views]];
     [headerView addConstraints:constraints];
     
     // Bar button items
@@ -52,12 +80,28 @@
     
     // Register cell
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    [self.tableView registerClass:[SwitchTableViewCell class] forCellReuseIdentifier:@"SwitchCell"];
+    [self.tableView registerClass:[MLTextFieldFullTableViewCell class] forCellReuseIdentifier:@"TextFieldCell"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - MLTextFieldFullTableViewCellDelegate
+
+- (void)cellDidBeginEditing:(MLTextFieldFullTableViewCell *)cell {
+    
+}
+
+- (void)cellDidEndEditing:(MLTextFieldFullTableViewCell *)cell {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    if (cell.textField.text) {
+        multipleChoiceAnswers[indexPath.row] = cell.textField.text;
+    }
+    else {
+        NSLog(@"NILLLLL");
+    }
 }
 
 #pragma mark - Actions
@@ -67,18 +111,40 @@
 }
 
 - (void)ask {
+    // Create the question
     PFObject *newQuestion = [PFObject objectWithClassName:@"Question"];
     [newQuestion setObject:textView.text forKey:@"text"];
     [newQuestion setObject:[PFUser currentUser] forKey:@"user"];
     
-    PFObject *optionOne = [PFObject objectWithClassName:@"Option"];
-    [optionOne setObject:@"QuestionnAIR" forKey:@"text"];
-    
-    PFObject *optionTwo = [PFObject objectWithClassName:@"Option"];
-    [optionTwo setObject:@"The one above me" forKey:@"text"];
-    
-    PFObject *optionThree = [PFObject objectWithClassName:@"Option"];
-    [optionThree setObject:@"Option 1!" forKey:@"text"];
+    // Add the options
+    if (questionType == QuestionTypeYesNo) {
+        [newQuestion setObject:[NSNumber numberWithBool:false] forKey:@"openEnded"];
+        
+        PFObject *optionOne = [PFObject objectWithClassName:@"Option"];
+        [optionOne setObject:@"Yes" forKey:@"text"];
+        
+        PFObject *optionTwo = [PFObject objectWithClassName:@"Option"];
+        [optionTwo setObject:@"No" forKey:@"text"];
+        
+        NSArray *options = @[optionOne, optionTwo];
+        [newQuestion setObject:options forKey:@"options"];
+    }
+    else if (questionType == QuestionTypeOpen) {
+        [newQuestion setObject:[NSNumber numberWithBool:true] forKey:@"openEnded"];
+    }
+    else if (questionType == QuestionTypeMutlipleChoice) {
+        [newQuestion setObject:[NSNumber numberWithBool:false] forKey:@"openEnded"];
+        
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (NSString *option in multipleChoiceAnswers) {
+            PFObject *optionObject = [PFObject objectWithClassName:@"Option"];
+            [optionObject setObject:option forKey:@"text"];
+            
+            [options addObject:optionObject];
+        }
+        
+        [newQuestion setObject:options forKey:@"options"];
+    }
     
     // ACL
     PFACL *questionACL = [PFACL ACLWithUser:[PFUser currentUser]];
@@ -86,11 +152,7 @@
     [questionACL setPublicWriteAccess:false];
     [newQuestion setACL:questionACL];
     
-    NSArray *options = @[optionOne, optionTwo, optionThree];
-    [newQuestion setObject:options forKey:@"options"];
-    
     // Save
-    
     [newQuestion saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         NSLog(@"Succeeded: %@", succeeded ? @"YES" : @"NO");
         if (error) {
@@ -102,17 +164,34 @@
     }];
 }
 
+- (void)segmentedControlValueChanged:(UISegmentedControl *)segmentedControl {
+    switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            questionType = QuestionTypeYesNo;
+            break;
+        case 1:
+            questionType = QuestionTypeOpen;
+            break;
+        case 2:
+            questionType = QuestionTypeMutlipleChoice;
+            break;
+            
+        default:
+            break;
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     if (section == 0) {
-        return 1;
+        return numberOfMutlipleChoiceAnswers+1;
     }
     else {
         return 1;
@@ -123,29 +202,84 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     
-    // Configure the cell...
-    if (indexPath.section == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"SwitchCell" forIndexPath:indexPath];
-        SwitchTableViewCell *switchCell = (SwitchTableViewCell *)cell;
-        switchCell.textLabel.text = @"Is a Yes / No question?";
-        switchCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.row == [tableView numberOfRowsInSection:0]-1) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        cell.textLabel.text = @"Add another option";
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        
     }
     else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-        
+        cell = [tableView dequeueReusableCellWithIdentifier:@"TextFieldCell" forIndexPath:indexPath];
+        MLTextFieldFullTableViewCell *textFieldCell = (MLTextFieldFullTableViewCell *)cell;
+        textFieldCell.placeholder = @"Enter a mutliple-choice answer";
+        textFieldCell.text = multipleChoiceAnswers[indexPath.row];
+        textFieldCell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return headerView;
+    if (section == 0) {
+        return headerView;
+    }
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 150;
+    if (section == 0) {
+        return 150;
+    }
+    else {
+        return 0;
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [tableView numberOfRowsInSection:0]-1) {
+        return UITableViewCellEditingStyleInsert;
+    }
+    else {
+        return UITableViewCellEditingStyleDelete;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        numberOfMutlipleChoiceAnswers--;
+        [multipleChoiceAnswers removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        numberOfMutlipleChoiceAnswers++;
+        [multipleChoiceAnswers insertObject:@"" atIndex:numberOfMutlipleChoiceAnswers-1];
+        [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:numberOfMutlipleChoiceAnswers-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 #pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
+    
+    if (indexPath.row == [tableView numberOfRowsInSection:0]-1) {
+        numberOfMutlipleChoiceAnswers++;
+        [multipleChoiceAnswers insertObject:@"" atIndex:numberOfMutlipleChoiceAnswers-1];
+        [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:numberOfMutlipleChoiceAnswers-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else {
+        MLTextFieldFullTableViewCell *textFieldCell = (MLTextFieldFullTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+        [textFieldCell.textField becomeFirstResponder];
+    }
+}
 
 @end

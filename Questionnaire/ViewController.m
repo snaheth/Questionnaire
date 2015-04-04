@@ -25,21 +25,12 @@
     NSArray *questions;
 }
 
--(void)addQuestionRight{
-    [self addQuestion];
-}
-
--(BOOL)prefersStatusBarHidden{
-    return NO;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"Questions";
-    
-    // Bar button items
-    UIBarButtonItem *askQuestionBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addQuestion)];
+    self.tableView.estimatedRowHeight = 61;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     // Login
     if ([PFUser currentUser] == nil) {

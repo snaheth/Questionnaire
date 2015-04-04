@@ -22,6 +22,9 @@
         self.questionPreviewLabel.translatesAutoresizingMaskIntoConstraints = false;
         [self.contentView addSubview:self.questionPreviewLabel];
         
+        [self.questionPreviewLabel setContentHuggingPriority:1 forAxis:UILayoutConstraintAxisHorizontal];
+        [self.questionPreviewLabel setContentCompressionResistancePriority:1 forAxis:UILayoutConstraintAxisHorizontal];
+        
         self.userTitleLabel = [[UILabel alloc] init];
         self.userTitleLabel.textColor = [UIColor whiteColor];
         self.userTitleLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:14];
@@ -41,14 +44,17 @@
                                 @"userTitleLabel": self.userTitleLabel,
                                 @"commentsLabel": self.commentsLabel,
                                 };
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[questionPreviewLabel]|" options:0 metrics:nil views:views]];
+        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[questionPreviewLabel]-15-|" options:0 metrics:nil views:views]];
         [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[userTitleLabel]-(>=15)-[commentsLabel]-15-|" options:0 metrics:nil views:views]];
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[questionPreviewLabel(24)]-3-[userTitleLabel(18)]-|" options:0 metrics:nil views:views]];
+        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[questionPreviewLabel(24)]" options:0 metrics:nil views:views]];
+        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[userTitleLabel(18)]" options:0 metrics:nil views:views]];
+        [constraints addObject:[NSLayoutConstraint constraintWithItem:self.userTitleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.questionPreviewLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:3.0]];
         [constraints addObject:[NSLayoutConstraint constraintWithItem:self.commentsLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.userTitleLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+        [constraints addObject:[NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.userTitleLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:8.0]];
         [self.contentView addConstraints:constraints];
         
-        // Height Constraint
-        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:58.0f];
+        //
+        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:44.0f];
         [constraint setPriority:999];
         [self.contentView addConstraint:constraint];
     }
