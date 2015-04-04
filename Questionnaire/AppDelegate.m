@@ -30,7 +30,7 @@
     
     // Appearance
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
-    [[UITabBar appearance] setBarTintColor: [UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1]];
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1]];
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     [[UITableView appearance] setBackgroundColor:[UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1]];
