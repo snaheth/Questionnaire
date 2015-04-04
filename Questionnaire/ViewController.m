@@ -31,7 +31,7 @@
     self.navigationItem.title = @"Questions";
     self.tableView.estimatedRowHeight = 61;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1];
     // Login
     if ([PFUser currentUser] == nil) {
         OpeningViewController *open = [[OpeningViewController alloc] init];

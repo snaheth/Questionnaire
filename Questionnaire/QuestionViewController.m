@@ -23,6 +23,9 @@
     
     self.navigationItem.title = @"Question";
     self.tableView.backgroundColor = [UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1];
+    
+    
+    
     // Fetch
     options = [self.question objectForKey:@"options"];
     for (PFObject *object in options) {
