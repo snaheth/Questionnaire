@@ -25,11 +25,7 @@
     [Parse setApplicationId:@"1KdLz3fYkj1JnT2L8bDhVDyGjEbRY9sv14cjrhqp"
                   clientKey:@"l3fBVwV2wQYQsdGPnx2xQKcoOPwvhbJspEGmVdaa"];
     
-    /*
-     If not logged in:
-    self.window.rootViewController = [[OpeningViewController alloc] init];
-    Else...do nothing.
-     */
+    
     
     return YES;
 }

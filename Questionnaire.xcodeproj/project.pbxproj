@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9783B4F81AD0167100A01CD7 /* OpeningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9783B4F71AD0167100A01CD7 /* OpeningViewController.m */; };
+		9783B4FB1AD0190F00A01CD7 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9783B4F91AD0190F00A01CD7 /* Roboto-Regular.ttf */; };
+		9783B4FC1AD0190F00A01CD7 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9783B4FA1AD0190F00A01CD7 /* Roboto-Bold.ttf */; };
 		A71B1E951ACFDA100072EE98 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A71B1E941ACFDA100072EE98 /* main.m */; };
 		A71B1E981ACFDA100072EE98 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A71B1E971ACFDA100072EE98 /* AppDelegate.m */; };
 		A71B1E9B1ACFDA100072EE98 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A71B1E9A1ACFDA100072EE98 /* ViewController.m */; };
@@ -46,6 +48,8 @@
 /* Begin PBXFileReference section */
 		9783B4F61AD0167100A01CD7 /* OpeningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpeningViewController.h; path = ../OpeningViewController.h; sourceTree = "<group>"; };
 		9783B4F71AD0167100A01CD7 /* OpeningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpeningViewController.m; path = ../OpeningViewController.m; sourceTree = "<group>"; };
+		9783B4F91AD0190F00A01CD7 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		9783B4FA1AD0190F00A01CD7 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		A71B1E8F1ACFDA100072EE98 /* Questionnaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Questionnaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71B1E931ACFDA100072EE98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A71B1E941ACFDA100072EE98 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				A71B1E971ACFDA100072EE98 /* AppDelegate.m */,
 				9783B4F61AD0167100A01CD7 /* OpeningViewController.h */,
 				9783B4F71AD0167100A01CD7 /* OpeningViewController.m */,
+				9783B4F91AD0190F00A01CD7 /* Roboto-Regular.ttf */,
+				9783B4FA1AD0190F00A01CD7 /* Roboto-Bold.ttf */,
 				A71B1E991ACFDA100072EE98 /* ViewController.h */,
 				A71B1E9A1ACFDA100072EE98 /* ViewController.m */,
 				A7AC406D1ACFFB83005A749B /* QuestionViewController.h */,
@@ -247,6 +253,7 @@
 				TargetAttributes = {
 					A71B1E8E1ACFDA100072EE98 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = QX3QKE8RP4;
 					};
 					A71B1EA71ACFDA110072EE98 = {
 						CreatedOnToolsVersion = 6.2;
@@ -280,6 +287,8 @@
 			files = (
 				A71B1E9E1ACFDA100072EE98 /* Main.storyboard in Resources */,
 				A71B1EA31ACFDA100072EE98 /* LaunchScreen.xib in Resources */,
+				9783B4FC1AD0190F00A01CD7 /* Roboto-Bold.ttf in Resources */,
+				9783B4FB1AD0190F00A01CD7 /* Roboto-Regular.ttf in Resources */,
 				A71B1EA01ACFDA100072EE98 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +441,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Questionnaire/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -446,6 +456,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Questionnaire/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -13,6 +13,7 @@
 
 #import "QuestionViewController.h"
 #import "AskQuestionViewController.h"
+#import "OpeningViewController.h"
 
 @interface ViewController ()
 
@@ -28,15 +29,22 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     if ([PFUser currentUser] == nil) {
-        [PFUser logInWithUsername:@"MaxHasADHD" password:@"testing"];
-//        UIImage *logo = [[UIImage imageNamed:@"975-balloon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//        UIImageView *logoImageView = [[UIImageView alloc] initWithImage:logo];
-//        logoImageView.tintColor = [UIColor blueColor];
-//        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
-//        signUpViewController.fields = PFSignUpFieldsDefault;
-//        signUpViewController.signUpView.logo = logoImageView;
-//        signUpViewController.signUpView.emailAsUsername = true;
-//        [self presentViewController:signUpViewController animated:true completion:nil];
+        OpeningViewController *open = [[OpeningViewController alloc] init];
+        [self presentViewController:open animated:YES completion:nil];
+        
+        
+        
+        //[PFUser logInWithUsername:@"MaxHasADHD" password:@"testing"];
+        /*
+        UIImage *logo = [[UIImage imageNamed:@"975-balloon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImageView *logoImageView = [[UIImageView alloc] initWithImage:logo];
+        logoImageView.tintColor = [UIColor blueColor];
+        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+        signUpViewController.fields = PFSignUpFieldsDefault;
+        signUpViewController.signUpView.logo = logoImageView;
+        signUpViewController.signUpView.emailAsUsername = true;
+        [self presentViewController:signUpViewController animated:true completion:nil];
+         */
     }
     else {
         
