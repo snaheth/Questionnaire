@@ -36,10 +36,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage *rightImage = [UIImage imageNamed:@"AddButton"];
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:rightImage.CGImage scale:4.5f orientation:UIImageOrientationUp] style:UIBarButtonItemStylePlain target:self action:@selector(addQuestionRight)];
-    self.navigationItem.rightBarButtonItem = rightButton;
     self.navigationItem.title = @"Questions";
+    
+    // Bar button items
+    UIBarButtonItem *askQuestionBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addQuestion)];
+    
+    // Login
     if ([PFUser currentUser] == nil) {
         OpeningViewController *open = [[OpeningViewController alloc] init];
         [self presentViewController:open animated:YES completion:nil];

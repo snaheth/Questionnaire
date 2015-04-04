@@ -17,21 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Title View
-    UIView *titleView = [[UIView alloc] init];
-    
-    UILabel *questionsLabel = [[UILabel alloc] init];
-    questionsLabel.text = @"Friend Questions";
-    questionsLabel.textColor = [UIColor whiteColor];
-    questionsLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:18];
-    questionsLabel.translatesAutoresizingMaskIntoConstraints = false;
-    [titleView addSubview:questionsLabel];
-    
-    [titleView addConstraint:[NSLayoutConstraint constraintWithItem:questionsLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
-    [titleView addConstraint:[NSLayoutConstraint constraintWithItem:questionsLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-    [titleView addConstraint:[NSLayoutConstraint constraintWithItem:questionsLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0]];
-    
-    self.navigationItem.titleView = titleView;
+    self.navigationItem.title = @"Friend Questions";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,13 +28,11 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 0;
 }

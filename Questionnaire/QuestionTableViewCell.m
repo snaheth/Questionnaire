@@ -42,7 +42,7 @@
                                 @"commentsLabel": self.commentsLabel,
                                 };
         [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[questionPreviewLabel]|" options:0 metrics:nil views:views]];
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[userTitleLabel]-[commentsLabel]-15-|" options:0 metrics:nil views:views]];
+        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[userTitleLabel]-(>=15)-[commentsLabel]-15-|" options:0 metrics:nil views:views]];
         [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[questionPreviewLabel(24)]-3-[userTitleLabel(18)]-|" options:0 metrics:nil views:views]];
         [constraints addObject:[NSLayoutConstraint constraintWithItem:self.commentsLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.userTitleLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
         [self.contentView addConstraints:constraints];

@@ -35,9 +35,11 @@
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     [[UITableView appearance] setBackgroundColor:[UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1]];
-    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:16.5f]} ];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{
+                                                           NSForegroundColorAttributeName:[UIColor whiteColor],
+                                                           NSFontAttributeName:[UIFont fontWithName:@"Roboto-Regular" size:16.5f]
+                                                           }];
     
     // Allocate a reachability object
     Reachability* reach = [Reachability reachabilityWithHostname:@"www.parse.com"];
