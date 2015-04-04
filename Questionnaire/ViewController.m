@@ -14,6 +14,7 @@
 #import "QuestionViewController.h"
 #import "AskQuestionViewController.h"
 #import "OpeningViewController.h"
+#import "QuestionTableViewCell.h"
 
 @interface ViewController ()
 
@@ -28,6 +29,10 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view, typically from a nib.
+    self.tableView.estimatedRowHeight = 58;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    // Title View
     UIView *titleView = [[UIView alloc] init];
     
     UILabel *questionsLabel = [[UILabel alloc] init];
@@ -50,6 +55,9 @@
     else {
         
     }
+    
+    // Register cells
+    [self.tableView registerClass:[QuestionTableViewCell class] forCellReuseIdentifier:@"Cell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -93,10 +101,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    QuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     PFObject *questionObject = questions[indexPath.row];
-    cell.textLabel.text = [questionObject objectForKey:@"text"];
+    cell.questionPreviewLabel.text = [questionObject objectForKey:@"text"];
+    cell.userTitleLabel.text = @"Knowledge King";
+    cell.commentsLabel.text = @"Comments (0)";
     
     return cell;
 }

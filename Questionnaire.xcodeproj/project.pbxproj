@@ -33,6 +33,7 @@
 		A71B1ED41ACFDF310072EE98 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A71B1ED31ACFDF310072EE98 /* libsqlite3.dylib */; };
 		A79980CB1AD01BDC00BBE9C5 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79980CA1AD01BDC00BBE9C5 /* Social.framework */; };
 		A79980CD1AD01BE800BBE9C5 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79980CC1AD01BE800BBE9C5 /* Accounts.framework */; };
+		A79980D81AD02A5700BBE9C5 /* QuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A79980D71AD02A5700BBE9C5 /* QuestionTableViewCell.m */; };
 		A7AC406F1ACFFB83005A749B /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AC406E1ACFFB83005A749B /* QuestionViewController.m */; };
 		A7AC40721AD0083B005A749B /* AskQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7AC40711AD0083B005A749B /* AskQuestionViewController.m */; };
 /* End PBXBuildFile section */
@@ -82,6 +83,8 @@
 		A71B1ED31ACFDF310072EE98 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A79980CA1AD01BDC00BBE9C5 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A79980CC1AD01BE800BBE9C5 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		A79980D61AD02A5700BBE9C5 /* QuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionTableViewCell.h; sourceTree = "<group>"; };
+		A79980D71AD02A5700BBE9C5 /* QuestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionTableViewCell.m; sourceTree = "<group>"; };
 		A7AC406D1ACFFB83005A749B /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionViewController.h; sourceTree = "<group>"; };
 		A7AC406E1ACFFB83005A749B /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
 		A7AC40701AD0083B005A749B /* AskQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskQuestionViewController.h; sourceTree = "<group>"; };
@@ -164,6 +167,7 @@
 				A7AC406E1ACFFB83005A749B /* QuestionViewController.m */,
 				A7AC40701AD0083B005A749B /* AskQuestionViewController.h */,
 				A7AC40711AD0083B005A749B /* AskQuestionViewController.m */,
+				A79980D51AD02A4200BBE9C5 /* Table view cells */,
 				A71B1E9C1ACFDA100072EE98 /* Main.storyboard */,
 				97B0F2731AD0242600226CFF /* Fonts */,
 				A71B1E9F1ACFDA100072EE98 /* Images.xcassets */,
@@ -219,6 +223,15 @@
 				A71B1EBA1ACFDA800072EE98 /* ParseUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A79980D51AD02A4200BBE9C5 /* Table view cells */ = {
+			isa = PBXGroup;
+			children = (
+				A79980D61AD02A5700BBE9C5 /* QuestionTableViewCell.h */,
+				A79980D71AD02A5700BBE9C5 /* QuestionTableViewCell.m */,
+			);
+			name = "Table view cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +348,7 @@
 				A71B1E981ACFDA100072EE98 /* AppDelegate.m in Sources */,
 				A7AC40721AD0083B005A749B /* AskQuestionViewController.m in Sources */,
 				A7AC406F1ACFFB83005A749B /* QuestionViewController.m in Sources */,
+				A79980D81AD02A5700BBE9C5 /* QuestionTableViewCell.m in Sources */,
 				A71B1E951ACFDA100072EE98 /* main.m in Sources */,
 				9783B5021AD020D900A01CD7 /* RegistrationViewController.m in Sources */,
 			);
