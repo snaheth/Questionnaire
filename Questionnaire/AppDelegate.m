@@ -12,9 +12,9 @@
 
 #import "OpeningViewController.h"
 #import "Reachability.h"
-
+#import <FacebookSDK/FacebookSDK.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
@@ -27,6 +27,8 @@
     [Parse setApplicationId:@"1KdLz3fYkj1JnT2L8bDhVDyGjEbRY9sv14cjrhqp"
                   clientKey:@"l3fBVwV2wQYQsdGPnx2xQKcoOPwvhbJspEGmVdaa"];
     [PFTwitterUtils initializeWithConsumerKey:@"fdTrgHc7bdcusuUPWIg7QuPDC" consumerSecret:@"iTKAD2ZZmZ3bIs0KJD8jo5g41OSPwKEVmiKKKJ8SynCLNMHvjJ"];
+    [PFFacebookUtils initializeFacebook];
+    
     
     // Appearance
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
@@ -59,8 +61,16 @@
     
     // Start the notifier, which will cause the reachability object to retain itself!
     [reach startNotifier];
-    
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:[PFFacebookUtils session]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -79,6 +89,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
