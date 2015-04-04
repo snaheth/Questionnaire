@@ -36,19 +36,16 @@
     
     UILabel *questionsLabel = [[UILabel alloc] init];
     questionsLabel.text = @"Questions";
+    questionsLabel.textColor = [UIColor whiteColor];
     questionsLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:18];
     questionsLabel.translatesAutoresizingMaskIntoConstraints = false;
     [titleView addSubview:questionsLabel];
-    
     
     [titleView addConstraint:[NSLayoutConstraint constraintWithItem:questionsLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
     [titleView addConstraint:[NSLayoutConstraint constraintWithItem:questionsLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
     [titleView addConstraint:[NSLayoutConstraint constraintWithItem:questionsLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0]];
     
     self.navigationItem.titleView = titleView;
-    
-    self.tableView.backgroundColor = [UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1];
     
     if ([PFUser currentUser] == nil) {
         OpeningViewController *open = [[OpeningViewController alloc] init];
@@ -117,5 +114,10 @@
     [self.navigationController pushViewController:questionViewController animated:YES];
 }
 
+#pragma mark - Status bar
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 
 @end
