@@ -38,20 +38,7 @@
     UIImage *rightImage = [UIImage imageNamed:@"AddButton"];
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:rightImage.CGImage scale:4.5f orientation:UIImageOrientationUp] style:UIBarButtonItemStylePlain target:self action:@selector(addQuestionRight)];
     self.navigationItem.rightBarButtonItem = rightButton;
-    
-    
-    UIView *titleView = [[UIView alloc] init];
-    
-    UILabel *questionsLabel = [[UILabel alloc] init];
-    questionsLabel.text = @"Questions";
-    questionsLabel.translatesAutoresizingMaskIntoConstraints = false;
-    [titleView addSubview:questionsLabel];
-    
-    [titleView addConstraint:[NSLayoutConstraint constraintWithItem:questionsLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
-    [titleView addConstraint:[NSLayoutConstraint constraintWithItem:questionsLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-    [titleView addConstraint:[NSLayoutConstraint constraintWithItem:questionsLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0]];
-    
-    self.navigationItem.titleView = titleView;
+    self.navigationItem.title = @"Questions";
     
     if ([PFUser currentUser] == nil) {
         OpeningViewController *open = [[OpeningViewController alloc] init];

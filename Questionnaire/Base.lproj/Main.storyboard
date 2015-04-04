@@ -247,7 +247,7 @@
     <resources>
         <image name="Groups" width="30" height="30"/>
         <image name="Person" width="25" height="25"/>
-        <image name="Settings" width="30" height="30"/>
+        <image name="Settings" width="28" height="28"/>
         <image name="questionMark" width="28" height="28"/>
     </resources>
 </document>
