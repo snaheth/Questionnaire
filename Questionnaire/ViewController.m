@@ -28,6 +28,10 @@
     [self addQuestion];
 }
 
+-(BOOL)prefersStatusBarHidden{
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -40,8 +44,6 @@
     
     UILabel *questionsLabel = [[UILabel alloc] init];
     questionsLabel.text = @"Questions";
-    questionsLabel.textColor = [UIColor whiteColor];
-    questionsLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:18];
     questionsLabel.translatesAutoresizingMaskIntoConstraints = false;
     [titleView addSubview:questionsLabel];
     

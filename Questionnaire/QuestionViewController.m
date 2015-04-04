@@ -18,6 +18,10 @@
     UIView *headerView;
 }
 
+-(BOOL)prefersStatusBarHidden{
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

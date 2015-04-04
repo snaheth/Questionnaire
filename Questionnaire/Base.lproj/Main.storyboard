@@ -29,7 +29,9 @@
         <scene sceneID="1Vd-1h-NM8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Icr-FF-Fqz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="739-question" id="1lm-GE-5UG"/>
+                    <tabBarItem key="tabBarItem" title="" image="questionMark" id="1lm-GE-5UG">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lAJ-6h-IhZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -118,7 +120,9 @@
         <scene sceneID="XLE-4M-qtu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ivp-7X-aNo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="895-user-group" id="t7M-7W-S5I"/>
+                    <tabBarItem key="tabBarItem" title="" image="Groups" id="t7M-7W-S5I">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="V7F-Er-pDy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -137,7 +141,9 @@
         <scene sceneID="YM6-PL-J1X">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mt8-C1-Hfu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="973-user" id="LKe-BE-ozW"/>
+                    <tabBarItem key="tabBarItem" title="" image="Person" id="LKe-BE-ozW">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PJ4-ks-2ZO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -185,7 +191,9 @@
         <scene sceneID="FSV-Cr-bj4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Spb-Zk-gDt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="740-gear" id="cH7-yj-yEm"/>
+                    <tabBarItem key="tabBarItem" title="" image="Settings" id="cH7-yj-yEm">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wtb-Dv-9Sx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -237,9 +245,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="739-question" width="28" height="28"/>
-        <image name="740-gear" width="28" height="28"/>
-        <image name="895-user-group" width="29" height="20"/>
-        <image name="973-user" width="28" height="24"/>
+        <image name="Groups" width="30" height="30"/>
+        <image name="Person" width="25" height="25"/>
+        <image name="Settings" width="30" height="30"/>
+        <image name="questionMark" width="28" height="28"/>
     </resources>
 </document>
