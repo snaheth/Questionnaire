@@ -38,6 +38,8 @@
         questionLabel.text = [object objectForKey:@"text"];
     }];
     questionLabel.textAlignment = NSTextAlignmentCenter;
+    questionLabel.textColor = [UIColor whiteColor];
+    
     questionLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
     questionLabel.translatesAutoresizingMaskIntoConstraints = false;
     [headerView addSubview:questionLabel];
@@ -77,6 +79,8 @@
     // Configure the cell...
     PFObject *option = options[indexPath.row];
     cell.textLabel.text = [option objectForKey:@"text"];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1];
     
     return cell;
 }
