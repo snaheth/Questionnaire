@@ -20,9 +20,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.navigationItem.title = @"Question";
     self.tableView.backgroundColor = [UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1];
+    
+    
+    //3 points layout starts here.
+    UIView *globalSky = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)];
+    globalSky.backgroundColor = [UIColor colorWithRed:58/255.0 green:65/255.0 blue:95/255.0 alpha:1];
+    [self.view addSubview:globalSky];
+    
+    UIView *localSky = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height/3)];
+    localSky.backgroundColor = [UIColor colorWithRed:74/255.0 green:89/255.0 blue:148/255.0 alpha:1];
+    [self.view addSubview:localSky];
+    
+    UIView *friendlySky = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height * 2, self.view.frame.size.width, self.view.frame.size.height/3)];
+    friendlySky.backgroundColor = [UIColor colorWithRed:130/255.0 green:124/255.0 blue:166/255.0 alpha:1];
+    [self.view addSubview:friendlySky];
+    
     // Fetch
     options = [self.question objectForKey:@"options"];
     for (PFObject *object in options) {
@@ -54,6 +67,10 @@
     
     // Register cells
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //If touch is in specific uiview, take action and "click that uiview."
 }
 
 - (void)didReceiveMemoryWarning {
