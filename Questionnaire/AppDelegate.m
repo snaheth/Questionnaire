@@ -26,9 +26,15 @@
                   clientKey:@"l3fBVwV2wQYQsdGPnx2xQKcoOPwvhbJspEGmVdaa"];
     [PFTwitterUtils initializeWithConsumerKey:@"fdTrgHc7bdcusuUPWIg7QuPDC" consumerSecret:@"iTKAD2ZZmZ3bIs0KJD8jo5g41OSPwKEVmiKKKJ8SynCLNMHvjJ"];
     
-    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
-    tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1];
-    tabBarController.tabBar.tintColor = [UIColor whiteColor];
+    // Appearance
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1]];
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    [[UITableView appearance] setBackgroundColor:[UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1]];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     return YES;
 }
