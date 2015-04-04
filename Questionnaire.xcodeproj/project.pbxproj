@@ -32,6 +32,8 @@
 		A71B1ED01ACFDF1F0072EE98 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71B1ECF1ACFDF1F0072EE98 /* SystemConfiguration.framework */; };
 		A71B1ED21ACFDF280072EE98 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A71B1ED11ACFDF280072EE98 /* libz.dylib */; };
 		A71B1ED41ACFDF310072EE98 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A71B1ED31ACFDF310072EE98 /* libsqlite3.dylib */; };
+		A759BD871AD03975001464D5 /* FriendQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A759BD861AD03975001464D5 /* FriendQuestionsViewController.m */; };
+		A759BD8A1AD03981001464D5 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A759BD891AD03981001464D5 /* ProfileViewController.m */; };
 		A79980CB1AD01BDC00BBE9C5 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79980CA1AD01BDC00BBE9C5 /* Social.framework */; };
 		A79980CD1AD01BE800BBE9C5 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79980CC1AD01BE800BBE9C5 /* Accounts.framework */; };
 		A79980D81AD02A5700BBE9C5 /* QuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A79980D71AD02A5700BBE9C5 /* QuestionTableViewCell.m */; };
@@ -84,6 +86,10 @@
 		A71B1ECF1ACFDF1F0072EE98 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A71B1ED11ACFDF280072EE98 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A71B1ED31ACFDF310072EE98 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		A759BD851AD03975001464D5 /* FriendQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendQuestionsViewController.h; sourceTree = "<group>"; };
+		A759BD861AD03975001464D5 /* FriendQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendQuestionsViewController.m; sourceTree = "<group>"; };
+		A759BD881AD03981001464D5 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		A759BD891AD03981001464D5 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		A79980CA1AD01BDC00BBE9C5 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A79980CC1AD01BE800BBE9C5 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		A79980D61AD02A5700BBE9C5 /* QuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionTableViewCell.h; sourceTree = "<group>"; };
@@ -170,6 +176,10 @@
 				A7AC406E1ACFFB83005A749B /* QuestionViewController.m */,
 				A7AC40701AD0083B005A749B /* AskQuestionViewController.h */,
 				A7AC40711AD0083B005A749B /* AskQuestionViewController.m */,
+				A759BD851AD03975001464D5 /* FriendQuestionsViewController.h */,
+				A759BD861AD03975001464D5 /* FriendQuestionsViewController.m */,
+				A759BD881AD03981001464D5 /* ProfileViewController.h */,
+				A759BD891AD03981001464D5 /* ProfileViewController.m */,
 				A79980D51AD02A4200BBE9C5 /* Table view cells */,
 				A71B1E9C1ACFDA100072EE98 /* Main.storyboard */,
 				97B0F2731AD0242600226CFF /* Fonts */,
@@ -288,7 +298,7 @@
 				TargetAttributes = {
 					A71B1E8E1ACFDA100072EE98 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = QX3QKE8RP4;
+						DevelopmentTeam = U6J8328WE2;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -297,7 +307,7 @@
 					};
 					A71B1EA71ACFDA110072EE98 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = QX3QKE8RP4;
+						DevelopmentTeam = U6J8328WE2;
 						TestTargetID = A71B1E8E1ACFDA100072EE98;
 					};
 				};
@@ -352,9 +362,11 @@
 				9783B4F81AD0167100A01CD7 /* OpeningViewController.m in Sources */,
 				97E0772E1AD02C6400756AC8 /* Reachability.m in Sources */,
 				A71B1E981ACFDA100072EE98 /* AppDelegate.m in Sources */,
+				A759BD871AD03975001464D5 /* FriendQuestionsViewController.m in Sources */,
 				A7AC40721AD0083B005A749B /* AskQuestionViewController.m in Sources */,
 				A7AC406F1ACFFB83005A749B /* QuestionViewController.m in Sources */,
 				A79980D81AD02A5700BBE9C5 /* QuestionTableViewCell.m in Sources */,
+				A759BD8A1AD03981001464D5 /* ProfileViewController.m in Sources */,
 				A71B1E951ACFDA100072EE98 /* main.m in Sources */,
 				9783B5021AD020D900A01CD7 /* RegistrationViewController.m in Sources */,
 			);
@@ -484,6 +496,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"/Users/Maximilian/Downloads/parse-library-1",
 				);
 				INFOPLIST_FILE = Questionnaire/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -500,6 +513,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"/Users/Maximilian/Downloads/parse-library-1",
 				);
 				INFOPLIST_FILE = Questionnaire/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

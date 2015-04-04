@@ -21,7 +21,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Question";
+    // Title View
+    UIView *titleView = [[UIView alloc] init];
+    
+    UILabel *questionsLabel = [[UILabel alloc] init];
+    questionsLabel.text = @"Question";
+    questionsLabel.textColor = [UIColor whiteColor];
+    questionsLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:18];
+    questionsLabel.translatesAutoresizingMaskIntoConstraints = false;
+    [titleView addSubview:questionsLabel];
+    
+    [titleView addConstraint:[NSLayoutConstraint constraintWithItem:questionsLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+    [titleView addConstraint:[NSLayoutConstraint constraintWithItem:questionsLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+    [titleView addConstraint:[NSLayoutConstraint constraintWithItem:questionsLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0]];
+    
+    self.navigationItem.titleView = titleView;
     
     options = [self.question objectForKey:@"options"];
     for (PFObject *object in options) {

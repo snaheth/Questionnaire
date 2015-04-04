@@ -52,6 +52,7 @@
     
     self.navigationItem.titleView = titleView;
     
+    // Login
     if ([PFUser currentUser] == nil) {
         OpeningViewController *open = [[OpeningViewController alloc] init];
         [self presentViewController:open animated:YES completion:nil];

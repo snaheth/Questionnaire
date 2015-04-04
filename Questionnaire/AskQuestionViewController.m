@@ -16,6 +16,7 @@
 
 @implementation AskQuestionViewController
 {
+    UIView *headerView;
     UITextView *textView;
 }
 
@@ -24,6 +25,7 @@
     
     textView = [[UITextView alloc] init];
     textView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    [headerView addSubview:textView];
     
     // Bar button items
     UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissViewController)];
@@ -105,11 +107,11 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return textView;
+    return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 100;
+    return 150;
 }
 
 #pragma mark - Table view delegate
