@@ -24,12 +24,16 @@
     NSArray *questions;
 }
 
--(void)addQuestionButton{
+-(void)addQuestionRight{
     [self addQuestion];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIImage *rightImage = [UIImage imageNamed:@"AddButton"];
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:rightImage.CGImage scale:4.5f orientation:UIImageOrientationUp] style:UIBarButtonItemStylePlain target:self action:@selector(addQuestionRight)];
+    self.navigationItem.rightBarButtonItem = rightButton;
     
     
     UIView *titleView = [[UIView alloc] init];
