@@ -121,6 +121,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		97B0F2731AD0242600226CFF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9783B4F91AD0190F00A01CD7 /* Roboto-Regular.ttf */,
+				9783B4FA1AD0190F00A01CD7 /* Roboto-Bold.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		A71B1E861ACFDA100072EE98 = {
 			isa = PBXGroup;
 			children = (
@@ -149,8 +158,6 @@
 				9783B4F71AD0167100A01CD7 /* OpeningViewController.m */,
 				9783B5001AD020D900A01CD7 /* RegistrationViewController.h */,
 				9783B5011AD020D900A01CD7 /* RegistrationViewController.m */,
-				9783B4F91AD0190F00A01CD7 /* Roboto-Regular.ttf */,
-				9783B4FA1AD0190F00A01CD7 /* Roboto-Bold.ttf */,
 				A71B1E991ACFDA100072EE98 /* ViewController.h */,
 				A71B1E9A1ACFDA100072EE98 /* ViewController.m */,
 				A7AC406D1ACFFB83005A749B /* QuestionViewController.h */,
@@ -158,6 +165,7 @@
 				A7AC40701AD0083B005A749B /* AskQuestionViewController.h */,
 				A7AC40711AD0083B005A749B /* AskQuestionViewController.m */,
 				A71B1E9C1ACFDA100072EE98 /* Main.storyboard */,
+				97B0F2731AD0242600226CFF /* Fonts */,
 				A71B1E9F1ACFDA100072EE98 /* Images.xcassets */,
 				A71B1EA11ACFDA100072EE98 /* LaunchScreen.xib */,
 				A71B1E921ACFDA100072EE98 /* Supporting Files */,

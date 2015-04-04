@@ -26,6 +26,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor colorWithRed:31/255.0 green:175/255.0 blue:175/255.0 alpha:1.0f];
+    
+    
     // Do any additional setup after loading the view, typically from a nib.
     self.tableView.backgroundColor = [UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1];
     
