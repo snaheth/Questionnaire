@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AskQuestionViewController : UITableViewController
-
+#import <CoreLocation/CoreLocation.h>
+@interface AskQuestionViewController : UITableViewController<CLLocationManagerDelegate>
+@property CLLocationManager *locManager;
+@property CLLocation *userLoc;
 @end
