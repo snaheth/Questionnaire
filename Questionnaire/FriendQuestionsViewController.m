@@ -10,25 +10,27 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import <Parse/Parse.h>
+#import "QuestionTableViewCell.h"
 
 @interface FriendQuestionsViewController ()
-
+@property NSMutableArray *friends;
+@property NSMutableArray *questions;
 @end
 
 @implementation FriendQuestionsViewController
-
+@synthesize friends, questions;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     self.navigationItem.title = @"Friend Questions";
     self.tableView.backgroundColor = [UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1];
+    friends = [[NSMutableArray alloc] init];
+    questions = [[NSMutableArray alloc] init];
     
-    
-    
-    
-    //[PFFacebookUtils logInWithPermissionsInBackground:@[@"public_profile" , @"email", @"user_friends"]];
     
     if([[FBSession activeSession] isOpen]){
-        NSLog(@"You good with active FBSession!");
+        NSLog(@"You're good with active FBSession!");
     }
     else{
         [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
@@ -42,12 +44,33 @@
                                              }
                                          }];
     }
+    
     FBRequest *friendsReq = [FBRequest requestForMyFriends];
     [friendsReq startWithCompletionHandler:^(FBRequestConnection *connect, id result, NSError *err){
-        NSArray* friends = [result objectForKey:@"data"];
         if(!err){
-            for (NSDictionary<FBGraphUser>* friend in friends) {
-                NSLog(@"Friend's name: %@" , friend[@"name"]);
+            NSArray *friendObjects = [result objectForKey:@"data"];
+            NSMutableArray *friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
+            for (NSDictionary *friendObject in friendObjects) {
+                [friendIds addObject:[friendObject objectForKey:@"id"]];
+            }
+            PFQuery *friendQuery = [PFUser query];
+            [friendQuery whereKey:@"fbId" containedIn:friendIds];
+            NSArray *friendUsers = [friendQuery findObjects];
+            PFQuery *obj = [PFQuery queryWithClassName:@"Question"];
+            for(PFUser *friendUser in friendUsers){
+                [obj whereKey:@"user" equalTo:friendUser];
+                [obj findObjectsInBackgroundWithBlock:^(NSArray *arr, NSError *err){
+                    if(!err){
+                        for(PFObject *question in arr){
+                            [questions addObject: question[@"text"]];
+                            [friends addObject: friendUser[@"name"]];
+                            [self.tableView reloadData];
+                        }
+                    }
+                    else{
+                        NSLog(@"Error getting questions.");
+                    }
+                }];
             }
         }
         else{
@@ -65,12 +88,24 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+    return [questions count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    return [questions count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    QuestionTableViewCell *tvc = [[QuestionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+    
+    
+    tvc.textLabel.textColor = [UIColor whiteColor];
+    UIView *bgView = [[UIView alloc] initWithFrame:tvc.frame];
+    bgView.backgroundColor = [UIColor colorWithWhite:0.50f alpha:1.0f];
+    tvc.selectedBackgroundView = bgView;
+    tvc.backgroundColor = [UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1];
+    return tvc;
 }
 
 /*

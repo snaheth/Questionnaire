@@ -77,7 +77,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
     // Configure the cell...
     PFObject *option = options[indexPath.row];
     cell.textLabel.text = [option objectForKey:@"text"];

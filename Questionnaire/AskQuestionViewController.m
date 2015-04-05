@@ -20,7 +20,6 @@ typedef NS_ENUM(NSInteger, QuestionType) {
 };
 
 @interface AskQuestionViewController () <MLTextFieldFullTableViewCellDelegate>
-
 @end
 
 @implementation AskQuestionViewController
@@ -45,15 +44,15 @@ typedef NS_ENUM(NSInteger, QuestionType) {
     
     self.title = @"Ask Question";
     self.tableView.backgroundColor = [UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1];
-    // Default question type
     questionType = QuestionTypeYesNo;
     numberOfMutlipleChoiceAnswers = 0;
     multipleChoiceAnswers = [[NSMutableArray alloc] init];
     
-    // Header view
+    //Header view
     headerView = [[UIView alloc] init];
     
-    // Segment Control
+    
+    //Segment Control
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Yes/No",@"Open",@"Multiple-Choice"]];
     segmentedControl.tintColor = [UIColor whiteColor];
     segmentedControl.selectedSegmentIndex = 0;

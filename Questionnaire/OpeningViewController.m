@@ -60,6 +60,17 @@
         }
         else{
             NSLog(@"You logged in!");
+            if (user) {
+                [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                    if (!error) {
+                        // Store the current user's Facebook ID on the user
+                        [[PFUser currentUser] setObject:[result objectForKey:@"id"]
+                                                 forKey:@"fbId"];
+                        [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"name"];
+                        [[PFUser currentUser] saveInBackground];
+                    }
+                }];
+            }
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];
