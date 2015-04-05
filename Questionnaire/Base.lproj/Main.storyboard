@@ -88,29 +88,12 @@
         <!--Profile-->
         <scene sceneID="08u-4Y-IAg">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gZf-WT-lIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="kpi-KQ-DC5" customClass="ProfileViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="mJS-TB-ZM2">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Pfl-Md-c5E">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pfl-Md-c5E" id="4yf-Ju-gMt">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="kpi-KQ-DC5" id="ZoT-Fe-Nfh"/>
-                            <outlet property="delegate" destination="kpi-KQ-DC5" id="yWN-dY-cFo"/>
-                        </connections>
-                    </tableView>
                     <navigationItem key="navigationItem" title="Profile" id="j8m-JZ-nck">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="d6c-JW-Dkl"/>
                     </navigationItem>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gZf-WT-lIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1850" y="589"/>
         </scene>

@@ -21,5 +21,5 @@
 @property (nonatomic, weak) id<SkyFallProtocol> delegate;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *titleLabel;
-
+-(instancetype)init;
 @end

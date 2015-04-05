@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "RegistrationViewController.h"
 
 @interface OpeningViewController () <UITextFieldDelegate>
 
@@ -48,6 +49,7 @@
 }
 
 - (void)registerWithoutSocialNetwork {
+    [self presentViewController:[[RegistrationViewController alloc] init] animated:YES completion:nil];
     NSLog(@"Registering the NORMAL way...");
    
 }

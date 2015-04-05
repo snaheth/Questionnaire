@@ -7,6 +7,7 @@
 //
 
 #import "RegistrationViewController.h"
+#import <Parse/Parse.h>
 
 @interface RegistrationViewController ()
 
@@ -137,7 +138,7 @@
 }
 
 -(void)registerNewPFUser{
-    NSLog(@"Register PF User here...");
+
 }
 
 - (void)didReceiveMemoryWarning {

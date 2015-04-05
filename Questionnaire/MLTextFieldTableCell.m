@@ -223,7 +223,6 @@
         NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:44.0f];
         [heightConstraint setPriority:999];
         [self.contentView addConstraint:heightConstraint];
-
     }
     return self;
 }

@@ -27,7 +27,6 @@ typedef NS_ENUM(NSInteger, QuestionType) {
     UIView *headerView;
     UITextView *textView;
     QuestionType questionType;
-    
     NSInteger numberOfMutlipleChoiceAnswers;
     NSMutableArray *multipleChoiceAnswers;
     
