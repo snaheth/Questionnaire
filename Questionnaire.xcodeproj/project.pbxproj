@@ -11,6 +11,7 @@
 		9783B4FB1AD0190F00A01CD7 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9783B4F91AD0190F00A01CD7 /* Roboto-Regular.ttf */; };
 		9783B4FC1AD0190F00A01CD7 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9783B4FA1AD0190F00A01CD7 /* Roboto-Bold.ttf */; };
 		9783B5021AD020D900A01CD7 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9783B5011AD020D900A01CD7 /* RegistrationViewController.m */; };
+		97C9A83D1AD14D0A001EEFC1 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97C9A83C1AD14D0A001EEFC1 /* Lato-Bold.ttf */; };
 		97E0772E1AD02C6400756AC8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 97E0772D1AD02C6400756AC8 /* Reachability.m */; };
 		97E077301AD0531D00756AC8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97E0772F1AD0531D00756AC8 /* Lato-Regular.ttf */; };
 		A71B1E951ACFDA100072EE98 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A71B1E941ACFDA100072EE98 /* main.m */; };
@@ -66,6 +67,7 @@
 		9783B4FA1AD0190F00A01CD7 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		9783B5001AD020D900A01CD7 /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
 		9783B5011AD020D900A01CD7 /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
+		97C9A83C1AD14D0A001EEFC1 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		97E0772C1AD02C6400756AC8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		97E0772D1AD02C6400756AC8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		97E0772F1AD0531D00756AC8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		97B0F2731AD0242600226CFF /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				97C9A83C1AD14D0A001EEFC1 /* Lato-Bold.ttf */,
 				97E0772F1AD0531D00756AC8 /* Lato-Regular.ttf */,
 				9783B4F91AD0190F00A01CD7 /* Roboto-Regular.ttf */,
 				9783B4FA1AD0190F00A01CD7 /* Roboto-Bold.ttf */,
@@ -340,11 +343,10 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0620;
-				ORGANIZATIONNAME = "Maximilian Litteral";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					A71B1E8E1ACFDA100072EE98 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = U6J8328WE2;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -353,7 +355,7 @@
 					};
 					A71B1EA71ACFDA110072EE98 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = U6J8328WE2;
+						DevelopmentTeam = QX3QKE8RP4;
 						TestTargetID = A71B1E8E1ACFDA100072EE98;
 					};
 				};
@@ -382,6 +384,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97C9A83D1AD14D0A001EEFC1 /* Lato-Bold.ttf in Resources */,
 				A71B1E9E1ACFDA100072EE98 /* Main.storyboard in Resources */,
 				97E077301AD0531D00756AC8 /* Lato-Regular.ttf in Resources */,
 				A71B1EA31ACFDA100072EE98 /* LaunchScreen.xib in Resources */,
@@ -479,7 +482,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Snaheth Thumathy (QX3QKE8RP4)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -521,7 +525,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Snaheth Thumathy (QX3QKE8RP4)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

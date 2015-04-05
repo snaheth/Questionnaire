@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "RegistrationViewController.h"
 
 @interface OpeningViewController () <UITextFieldDelegate>
 
@@ -48,6 +49,7 @@
 }
 
 - (void)registerWithoutSocialNetwork {
+    [self presentViewController:[[RegistrationViewController alloc] init] animated:YES completion:nil];
     NSLog(@"Registering the NORMAL way...");
    
 }
@@ -60,6 +62,17 @@
         }
         else{
             NSLog(@"You logged in!");
+            if (user) {
+                [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                    if (!error) {
+                        // Store the current user's Facebook ID on the user
+                        [[PFUser currentUser] setObject:[result objectForKey:@"id"]
+                                                 forKey:@"fbId"];
+                        [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"name"];
+                        [[PFUser currentUser] saveInBackground];
+                    }
+                }];
+            }
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];

@@ -87,7 +87,6 @@
     cell.questionPreviewLabel.text = [questionObject objectForKey:@"text"];
     cell.userTitleLabel.text = @"Knowledge King";
     cell.commentsLabel.text = @"Comments (0)";
-    
     return cell;
 }
 

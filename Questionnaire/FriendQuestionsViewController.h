@@ -8,6 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FriendQuestionsViewController : UITableViewController
-
+@interface FriendQuestionsViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
 @end

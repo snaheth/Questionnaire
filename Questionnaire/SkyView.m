@@ -23,7 +23,7 @@
         
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.font = [UIFont systemFontOfSize:24];
+        _titleLabel.font = [UIFont fontWithName:@"Lato-Regular" size:20.0f];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = false;
         [self addSubview:_titleLabel];
         
@@ -32,7 +32,7 @@
                                 @"_imageView": _imageView,
                                 @"_titleLabel": _titleLabel,
                                 };
-        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_imageView]-15-[_titleLabel]|" options:0 metrics:nil views:views]];
+        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_imageView]-40-[_titleLabel]|" options:0 metrics:nil views:views]];
         [constraints addObject:[NSLayoutConstraint constraintWithItem:_imageView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
         [constraints addObject:[NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
         [self addConstraints:constraints];
