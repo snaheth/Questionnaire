@@ -7,6 +7,9 @@
 //
 
 #import "FriendQuestionsViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import <Parse/Parse.h>
 
 @interface FriendQuestionsViewController ()
 
@@ -16,10 +19,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.title = @"Friend Questions";
     self.tableView.backgroundColor = [UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1];
-
+    
+    
+    
+    
+    //[PFFacebookUtils logInWithPermissionsInBackground:@[@"public_profile" , @"email", @"user_friends"]];
+    
+    if([[FBSession activeSession] isOpen]){
+        NSLog(@"You good with active FBSession!");
+    }
+    else{
+        [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
+                                           defaultAudience:FBSessionDefaultAudienceOnlyMe
+                                              allowLoginUI:YES
+                                         completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                             if (!error && status == FBSessionStateOpen) {
+                                                 NSLog(@"No error. Status is state open.");
+                                             }else{
+                                                 NSLog(@"error");
+                                             }
+                                         }];
+    }
+    FBRequest *friendsReq = [FBRequest requestForMyFriends];
+    [friendsReq startWithCompletionHandler:^(FBRequestConnection *connect, id result, NSError *err){
+        NSArray* friends = [result objectForKey:@"data"];
+        if(!err){
+            for (NSDictionary<FBGraphUser>* friend in friends) {
+                NSLog(@"Friend's name: %@" , friend[@"name"]);
+            }
+        }
+        else{
+            NSLog(@"An error occured with getting facebook friend data!");
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -16,7 +16,6 @@
 #import "FriendQuestionsViewController.h"
 #import "QuestionsViewController.h"
 #import "LocalSkyViewController.h"
-
 #import "SkyView.h"
 
 @interface ViewController () <SkyFallProtocol>
@@ -26,13 +25,12 @@
 @implementation ViewController
 
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.title = @"Choose a sky";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:self action:nil];
 
-    // Login
+    //Login
     if ([PFUser currentUser] == nil) {
         OpeningViewController *open = [[OpeningViewController alloc] init];
         [self presentViewController:open animated:YES completion:nil];
@@ -41,14 +39,17 @@
         
     }
     
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.view.bounds;
-    gradient.colors = @[(id)[UIColor colorWithRed:0.23 green:0.25 blue:0.37 alpha:1].CGColor,
-                        (id)[UIColor colorWithRed:0.65 green:0.34 blue:0.34 alpha:1].CGColor];
-    [self.view.layer addSublayer:gradient];
+    
+    /*
+            CAGradientLayer *gradient = [CAGradientLayer layer];
+            gradient.frame = self.view.bounds;
+            gradient.colors = @[(id)[UIColor colorWithRed:0.23 green:0.25 blue:0.37 alpha:1].CGColor,
+            (id)[UIColor colorWithRed:0.65 green:0.34 blue:0.34 alpha:1].CGColor];
+                [self.view.layer addSublayer:gradient];
+    */
     
     SkyView *globalSky = [[SkyView alloc] init];
-//    globalSky.backgroundColor = [UIColor colorWithRed:0.23 green:0.25 blue:0.37 alpha:1];
+    globalSky.backgroundColor = [UIColor colorWithRed:0.23 green:0.25 blue:0.37 alpha:1];
     globalSky.imageView.image = [UIImage imageNamed:@"GlobalSky"];
     globalSky.titleLabel.text = @"Global Sky";
     globalSky.delegate = self;
@@ -56,8 +57,9 @@
     globalSky.translatesAutoresizingMaskIntoConstraints = false;
     [self.view addSubview:globalSky];
     
+    
     SkyView *localSky = [[SkyView alloc] init];
-//    localSky.backgroundColor = [UIColor colorWithRed:0.29 green:0.35 blue:0.58 alpha:1];
+    localSky.backgroundColor = [UIColor colorWithRed:0.29 green:0.35 blue:0.58 alpha:1];
     localSky.imageView.image = [UIImage imageNamed:@"LocalSky"];
     localSky.titleLabel.text = @"Local Sky";
     localSky.delegate = self;
@@ -65,8 +67,9 @@
     localSky.translatesAutoresizingMaskIntoConstraints = false;
     [self.view addSubview:localSky];
     
+    
     SkyView *friendlySky = [[SkyView alloc] init];
-//    friendlySky.backgroundColor = [UIColor colorWithRed:0.51 green:0.49 blue:0.65 alpha:1];
+    friendlySky.backgroundColor = [UIColor colorWithRed:0.51 green:0.49 blue:0.65 alpha:1];
     friendlySky.imageView.image = [UIImage imageNamed:@"FriendlySky"];
     friendlySky.titleLabel.text = @"Friendly Sky";
     friendlySky.delegate = self;
@@ -74,7 +77,7 @@
     friendlySky.translatesAutoresizingMaskIntoConstraints = false;
     [self.view addSubview:friendlySky];
     
-    // Constraints
+    
     NSMutableArray *constraints = [[NSMutableArray alloc] init];
     NSDictionary *views = @{
                             @"globalSky": globalSky,
@@ -86,8 +89,6 @@
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[friendlySky]|" options:0 metrics:nil views:views]];
     [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-64-[globalSky][localSky(==globalSky)][friendlySky(==localSky)]|" options:0 metrics:nil views:views]];
     [self.view addConstraints:constraints];
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

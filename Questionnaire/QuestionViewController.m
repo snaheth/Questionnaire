@@ -9,7 +9,6 @@
 #import "QuestionViewController.h"
 
 @interface QuestionViewController ()
-
 @end
 
 @implementation QuestionViewController
