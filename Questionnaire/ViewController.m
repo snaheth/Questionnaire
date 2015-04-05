@@ -11,27 +11,27 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
-#import "QuestionViewController.h"
-#import "AskQuestionViewController.h"
-#import "OpeningViewController.h"
-#import "QuestionTableViewCell.h"
 
-@interface ViewController ()
+#import "OpeningViewController.h"
+#import "FriendQuestionsViewController.h"
+#import "QuestionsViewController.h"
+#import "LocalSkyViewController.h"
+
+#import "SkyView.h"
+
+@interface ViewController () <SkyFallProtocol>
 
 @end
 
 @implementation ViewController
-{
-    NSArray *questions;
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Questions";
-    self.tableView.estimatedRowHeight = 61;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.backgroundColor = [UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1];
+    self.navigationItem.title = @"Choose a sky";
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:self action:nil];
+
     // Login
     if ([PFUser currentUser] == nil) {
         OpeningViewController *open = [[OpeningViewController alloc] init];
@@ -41,25 +41,58 @@
         
     }
     
-    // Register cells
-    [self.tableView registerClass:[QuestionTableViewCell class] forCellReuseIdentifier:@"Cell"];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    gradient.colors = @[(id)[UIColor colorWithRed:0.23 green:0.25 blue:0.37 alpha:1].CGColor,
+                        (id)[UIColor colorWithRed:0.65 green:0.34 blue:0.34 alpha:1].CGColor];
+    [self.view.layer addSublayer:gradient];
+    
+    SkyView *globalSky = [[SkyView alloc] init];
+//    globalSky.backgroundColor = [UIColor colorWithRed:0.23 green:0.25 blue:0.37 alpha:1];
+    globalSky.imageView.image = [UIImage imageNamed:@"GlobalSky"];
+    globalSky.titleLabel.text = @"Global Sky";
+    globalSky.delegate = self;
+    globalSky.tag = 0;
+    globalSky.translatesAutoresizingMaskIntoConstraints = false;
+    [self.view addSubview:globalSky];
+    
+    SkyView *localSky = [[SkyView alloc] init];
+//    localSky.backgroundColor = [UIColor colorWithRed:0.29 green:0.35 blue:0.58 alpha:1];
+    localSky.imageView.image = [UIImage imageNamed:@"LocalSky"];
+    localSky.titleLabel.text = @"Local Sky";
+    localSky.delegate = self;
+    localSky.tag = 1;
+    localSky.translatesAutoresizingMaskIntoConstraints = false;
+    [self.view addSubview:localSky];
+    
+    SkyView *friendlySky = [[SkyView alloc] init];
+//    friendlySky.backgroundColor = [UIColor colorWithRed:0.51 green:0.49 blue:0.65 alpha:1];
+    friendlySky.imageView.image = [UIImage imageNamed:@"FriendlySky"];
+    friendlySky.titleLabel.text = @"Friendly Sky";
+    friendlySky.delegate = self;
+    friendlySky.tag = 2;
+    friendlySky.translatesAutoresizingMaskIntoConstraints = false;
+    [self.view addSubview:friendlySky];
+    
+    // Constraints
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    NSDictionary *views = @{
+                            @"globalSky": globalSky,
+                            @"localSky": localSky,
+                            @"friendlySky": friendlySky,
+                            };
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[globalSky]|" options:0 metrics:nil views:views]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[localSky]|" options:0 metrics:nil views:views]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[friendlySky]|" options:0 metrics:nil views:views]];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-64-[globalSky][localSky(==globalSky)][friendlySky(==localSky)]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:constraints];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error == nil) {
-            questions = objects;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-            });
-        }
-        else {
-            NSLog(@"Error: %@", error);
-        }
-    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,48 +100,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Actions
+#pragma mark - SkyFallProtocol
 
-- (IBAction)addQuestion {
-    AskQuestionViewController *askQuestion = [[AskQuestionViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:askQuestion];
-    [self presentViewController:navigationController animated:YES completion:nil];
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [questions count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    QuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-    PFObject *questionObject = questions[indexPath.row];
-    cell.questionPreviewLabel.text = [questionObject objectForKey:@"text"];
-    cell.userTitleLabel.text = @"Knowledge King";
-    cell.commentsLabel.text = @"Comments (0)";
-    
-    return cell;
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    PFObject *questionObject = questions[indexPath.row];
-    QuestionViewController *questionViewController = [[QuestionViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    questionViewController.question = questionObject;
-    [self.navigationController pushViewController:questionViewController animated:YES];
-}
-
-#pragma mark - Status bar
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+- (void)skyViewTapped:(SkyView *)skyView {
+    if (skyView.tag == 0) {
+        QuestionsViewController *questionsViewController = [[QuestionsViewController alloc] init];
+        [self.navigationController pushViewController:questionsViewController animated:YES];
+    }
+    else if (skyView.tag == 1) {
+        LocalSkyViewController *localSkyViewController = [[LocalSkyViewController alloc] init];
+        [self.navigationController pushViewController:localSkyViewController animated:true];
+    }
+    else if (skyView.tag == 2) {
+        FriendQuestionsViewController *friendlySky = [[FriendQuestionsViewController alloc] init];
+        [self.navigationController pushViewController:friendlySky animated:YES];
+    }
 }
 
 @end

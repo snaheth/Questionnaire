@@ -31,6 +31,8 @@ typedef NS_ENUM(NSInteger, QuestionType) {
     
     NSInteger numberOfMutlipleChoiceAnswers;
     NSMutableArray *multipleChoiceAnswers;
+    
+    id currentResponder;
 }
 
 - (void)viewDidLoad {
@@ -81,6 +83,7 @@ typedef NS_ENUM(NSInteger, QuestionType) {
     // Register cell
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     [self.tableView registerClass:[MLTextFieldFullTableViewCell class] forCellReuseIdentifier:@"TextFieldCell"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,10 +94,11 @@ typedef NS_ENUM(NSInteger, QuestionType) {
 #pragma mark - MLTextFieldFullTableViewCellDelegate
 
 - (void)cellDidBeginEditing:(MLTextFieldFullTableViewCell *)cell {
-    
+    currentResponder = cell.textField;
 }
 
 - (void)cellDidEndEditing:(MLTextFieldFullTableViewCell *)cell {
+    currentResponder = nil;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     if (cell.textField.text) {
         multipleChoiceAnswers[indexPath.row] = cell.textField.text;
@@ -111,10 +115,24 @@ typedef NS_ENUM(NSInteger, QuestionType) {
 }
 
 - (void)ask {
+    if (currentResponder != nil) {
+        [currentResponder resignFirstResponder];
+    }
+    
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        [self askOnParse:geoPoint];
+    }];
+    
+}
+
+- (void)askOnParse:(PFGeoPoint *)point {
     // Create the question
     PFObject *newQuestion = [PFObject objectWithClassName:@"Question"];
     [newQuestion setObject:textView.text forKey:@"text"];
     [newQuestion setObject:[PFUser currentUser] forKey:@"user"];
+    if (point != nil) {
+        [newQuestion setObject:point forKey:@"originLocation"];
+    }
     
     // Add the options
     if (questionType == QuestionTypeYesNo) {

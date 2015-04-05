@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  LocalSkyViewController.h
 //  Questionnaire
 //
 //  Created by Maximilian Litteral on 4/4/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface LocalSkyViewController : UITableViewController
 
 @end
-
