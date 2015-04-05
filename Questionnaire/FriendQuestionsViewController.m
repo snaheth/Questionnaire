@@ -100,8 +100,6 @@
     QuestionTableViewCell *tvc = [[QuestionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
     
     //Take data from questions and friends array and display in the cell.....
-    
-    
     tvc.textLabel.textColor = [UIColor whiteColor];
     UIView *bgView = [[UIView alloc] initWithFrame:tvc.frame];
     bgView.backgroundColor = [UIColor colorWithWhite:0.50f alpha:1.0f];

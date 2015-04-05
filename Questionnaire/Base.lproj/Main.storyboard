@@ -90,9 +90,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gZf-WT-lIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="kpi-KQ-DC5" customClass="ProfileViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Profile" id="j8m-JZ-nck">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="d6c-JW-Dkl"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Profile" id="j8m-JZ-nck"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1850" y="589"/>

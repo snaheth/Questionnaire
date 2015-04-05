@@ -7,20 +7,25 @@
 #import <Parse/Parse.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "QuestionTableViewCell.h"
 
 @interface ProfileViewController ()
-
+@property NSMutableArray *myQuestions;
+@property UITableView *tbv;
 @end
 
 @implementation ProfileViewController
-
+@synthesize myQuestions, tbv;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithRed:84/255.0f green:131/255.0f blue:143/255.0f alpha:1.0f];
     
-    UITableView *tbv = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2, self.view.frame.size.width,  self.view.frame.size.height/2) style:UITableViewStylePlain];
+    tbv = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2, self.view.frame.size.width,  self.view.frame.size.height/2) style:UITableViewStylePlain];
+    tbv.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, tbv.bounds.size.width, 0.00f)];
+    tbv.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, tbv.bounds.size.width, 0.00f)];
     tbv.backgroundColor = [UIColor colorWithRed:70/255.0f green:128/255.0f blue:143/255.0f alpha:1.0f];
+    tbv.contentInset = UIEdgeInsetsMake(-64.0f, 0, 0, 0);
     tbv.delegate = self;
     tbv.dataSource = self;
     [self.view addSubview:tbv];
@@ -34,8 +39,10 @@
     name.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:name];
     
+    [[PFUser currentUser] fetch];
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(110, 113, 250, 60)];
-    title.text = [@"Dragonslayer" uppercaseString];
+    title.text = [[PFUser currentUser][@"status"] uppercaseString];
+    NSLog(@"STATUS: %@" , title.text);
     title.font = [UIFont fontWithName:@"Lato-Bold" size:15.0f];
     title.numberOfLines = 1;
     title.textColor = [UIColor colorWithRed:185/255.0f green:235/255.0f blue:236/255.0f alpha:1.0f];
@@ -44,7 +51,16 @@
     [self.view addSubview:title];
     
     UILabel *score = [[UILabel alloc] initWithFrame:CGRectMake(110, 146, 250, 60)];
-    score.text = [@"+50" uppercaseString];
+    id scoreVal = [PFUser currentUser][@"score"];
+    NSString *scoreStr = @"";
+    if(scoreVal > 0){
+        scoreStr = @"+";
+    }
+    else if(scoreVal < 0){
+        scoreStr = @"-";
+    }
+    scoreStr = [NSString stringWithFormat:@"%@%@" , scoreStr, scoreVal];
+    score.text = scoreStr;
     score.font = [UIFont fontWithName:@"Lato-Bold" size:15.0f];
     score.numberOfLines = 1;
     score.textColor = [UIColor colorWithRed:185/255.0f green:235/255.0f blue:236/255.0f alpha:1.0f];
@@ -74,6 +90,7 @@
             name.text = [userName uppercaseString];
             name.font = [UIFont fontWithName:@"Roboto-Bold" size:15.0f];
             
+            
             UIImageView *profPicView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 113, 70, 70)];
             NSString *userImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [FBuser objectID]];
             NSURL *url = [NSURL URLWithString: userImageURL];
@@ -89,11 +106,60 @@
         }
     }];
     
+    //Add the questions.
+    myQuestions = [[NSMutableArray alloc] init];
+    if([[FBSession activeSession] isOpen]){
+        NSLog(@"You're good with active FBSession!");
+    }
+    else{
+        [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
+                                           defaultAudience:FBSessionDefaultAudienceOnlyMe
+                                              allowLoginUI:YES
+                                         completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                             if (!error && status == FBSessionStateOpen) {
+                                                 NSLog(@"No error. Status is state open.");
+                                             }else{
+                                                 NSLog(@"error");
+                                             }
+                                         }];
+    }
+    
+    FBRequest *myReq = [FBRequest requestForMe];
+    [myReq startWithCompletionHandler:^(FBRequestConnection *connect, id result, NSError *err){
+        if(!err){
+            PFQuery *obj = [PFQuery queryWithClassName:@"Question"];
+            [obj whereKey:@"user" equalTo:[PFUser currentUser]];
+            [obj findObjectsInBackgroundWithBlock:^(NSArray *arr, NSError *err){
+                    if(!err){
+                        for(PFObject *question in arr){
+                            [myQuestions addObject:question[@"text"]];
+                            [tbv reloadData];
+                        }
+                    }
+                    else{
+                        NSLog(@"Error getting questions.");
+                    }
+                }];
+            }
+        else{
+            NSLog(@"An error occured with getting facebook friend data!");
+        }
+    }];
     self.navigationItem.title = @"Profile";
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+    QuestionTableViewCell *tvc = [[QuestionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+    tvc.textLabel.textColor = [UIColor whiteColor];
+    NSInteger arrIndex = [indexPath row];
+    tvc.questionPreviewLabel.text = myQuestions[arrIndex];
+    tvc.questionPreviewLabel.minimumScaleFactor = 0.5f;
+    tvc.questionPreviewLabel.adjustsFontSizeToFitWidth = YES;
+    UIView *bgView = [[UIView alloc] initWithFrame:tvc.frame];
+    bgView.backgroundColor = [UIColor colorWithRed:70/255.0f green:128/255.0f blue:143/255.0f alpha:0.25f];
+    tvc.selectedBackgroundView = bgView;
+    tvc.backgroundColor = [UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1];
+    return tvc;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,12 +171,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    return [myQuestions count];
 }
 
 /*

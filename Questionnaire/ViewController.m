@@ -39,15 +39,6 @@
         
     }
     
-    
-    /*
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = self.view.bounds;
-            gradient.colors = @[(id)[UIColor colorWithRed:0.23 green:0.25 blue:0.37 alpha:1].CGColor,
-            (id)[UIColor colorWithRed:0.65 green:0.34 blue:0.34 alpha:1].CGColor];
-                [self.view.layer addSublayer:gradient];
-    */
-    
     SkyView *globalSky = [[SkyView alloc] init];
     globalSky.backgroundColor = [UIColor colorWithRed:0.23 green:0.25 blue:0.37 alpha:1];
     globalSky.imageView.image = [UIImage imageNamed:@"GlobalSky"];
