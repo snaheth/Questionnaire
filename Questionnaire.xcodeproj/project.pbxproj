@@ -347,6 +347,7 @@
 				TargetAttributes = {
 					A71B1E8E1ACFDA100072EE98 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = U6J8328WE2;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -355,7 +356,7 @@
 					};
 					A71B1EA71ACFDA110072EE98 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = QX3QKE8RP4;
+						DevelopmentTeam = U6J8328WE2;
 						TestTargetID = A71B1E8E1ACFDA100072EE98;
 					};
 				};

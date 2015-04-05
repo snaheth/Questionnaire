@@ -14,7 +14,8 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
+//        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1];
         
         self.questionPreviewLabel = [[UILabel alloc] init];
         self.questionPreviewLabel.textColor = [UIColor whiteColor];
@@ -57,6 +58,11 @@
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:44.0f];
         [constraint setPriority:999];
         [self.contentView addConstraint:constraint];
+        
+        // Selected background
+        UIView *bgView = [[UIView alloc] init];
+        bgView.backgroundColor = [UIColor colorWithWhite:0.50f alpha:1.0f];
+        self.selectedBackgroundView = bgView;
     }
     return self;
 }

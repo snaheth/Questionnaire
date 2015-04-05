@@ -8,5 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfileViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ProfileViewController : UITableViewController
 @end
