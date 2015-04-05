@@ -108,7 +108,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     QuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
     PFObject *questionObject = questions[indexPath.row];
     cell.questionPreviewLabel.text = [questionObject objectForKey:@"text"];
     cell.userTitleLabel.text = @"Knowledge King";

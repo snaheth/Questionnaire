@@ -15,6 +15,7 @@
 @interface FriendQuestionsViewController ()
 @property NSMutableArray *friends;
 @property NSMutableArray *questions;
+@property NSArray *parseQuestions;
 @end
 
 @implementation FriendQuestionsViewController
@@ -61,6 +62,7 @@
                 [obj whereKey:@"user" equalTo:friendUser];
                 [obj findObjectsInBackgroundWithBlock:^(NSArray *arr, NSError *err){
                     if(!err){
+                        _parseQuestions = arr;
                         for(PFObject *question in arr){
                             [questions addObject: question[@"text"]];
                             [friends addObject: friendUser[@"name"]];
@@ -88,19 +90,28 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return [questions count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [questions count];
+    return [_parseQuestions count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"Trying to make cell...");
+    [tableView beginUpdates];
     QuestionTableViewCell *tvc = [[QuestionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
-    
-    //Take data from questions and friends array and display in the cell.....
     tvc.textLabel.textColor = [UIColor whiteColor];
+    PFObject *obj = [_parseQuestions objectAtIndex:indexPath.row];
+    [obj fetchIfNeeded];
+    PFUser *user = obj[@"user"];
+    [user fetchIfNeeded];
+    tvc.questionPreviewLabel = obj[@"text"];
+    tvc.userTitleLabel = user[@"status"];
+    tvc.commentsLabel = user[@"score"];
+    [tableView endUpdates];
+    
     UIView *bgView = [[UIView alloc] initWithFrame:tvc.frame];
     bgView.backgroundColor = [UIColor colorWithWhite:0.50f alpha:1.0f];
     tvc.selectedBackgroundView = bgView;
