@@ -95,7 +95,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
-    
     if (isOpenEnded) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"TextFieldCell" forIndexPath:indexPath];
         MLTextFieldFullTableViewCell *textFieldCell = (MLTextFieldFullTableViewCell *)cell;
@@ -110,7 +109,6 @@
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.backgroundColor = [UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1];
     }
-    
     return cell;
 }
 
@@ -123,12 +121,14 @@
 }
 
 #pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     PFObject *option = options[indexPath.row];
     NSNumber *votes = [option objectForKey:@"votes"];
+    NSNumber *scoreValue = [PFUser currentUser][@"score"];
+    NSInteger scoreIntValue = (NSInteger)scoreValue;
+    [[PFUser currentUser] setObject: [NSNumber numberWithInteger:scoreIntValue + 1] forKey:@"score"];
+    [[PFUser currentUser] saveInBackground];
     [option setObject:[NSNumber numberWithInteger:votes.integerValue+1] forKey:@"votes"];
     [option save];
 }

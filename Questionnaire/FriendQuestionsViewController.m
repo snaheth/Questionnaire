@@ -11,6 +11,7 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import <Parse/Parse.h>
 #import "QuestionTableViewCell.h"
+#import "QuestionViewController.h"
 
 @interface FriendQuestionsViewController ()
 @property NSMutableArray *friends;
@@ -64,14 +65,15 @@
                     if(!err){
                         _parseQuestions = arr;
                         for(PFObject *question in arr){
-                            [questions addObject: question[@"text"]];
-                            [friends addObject: friendUser[@"name"]];
-                            [self.tableView reloadData];
+//                            [questions addObject: question[@"text"]];
+//                            [friends addObject: friendUser[@"name"]];
+                            [question fetchIfNeeded];
                         }
                     }
                     else{
                         NSLog(@"Error getting questions.");
                     }
+                    [self.tableView reloadData];
                 }];
             }
         }
@@ -105,23 +107,30 @@
     QuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     cell.textLabel.textColor = [UIColor whiteColor];
-    
     PFObject *obj = [_parseQuestions objectAtIndex:indexPath.row];
-    [obj fetchIfNeeded];
+    cell.questionPreviewLabel.text = obj[@"text"];
+
     PFUser *user = obj[@"user"];
-    [user fetchIfNeeded];
-    
-    cell.questionPreviewLabel = obj[@"text"];
-    cell.userTitleLabel = user[@"status"];
-    cell.commentsLabel = user[@"score"];
-    
+    [user fetchInBackgroundWithBlock:^(PFObject *friendUser, NSError *err){
+        id num =  friendUser[@"score"];
+        cell.commentsLabel.text = [NSString stringWithFormat:@"%@" , num];
+        cell.userTitleLabel.text = friendUser[@"status"];
+    }];
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 64.0f;
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+    PFObject *questionObject = _parseQuestions[indexPath.row];
+    QuestionViewController *questionViewController = [[QuestionViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    questionViewController.question = questionObject;
+    [self.navigationController pushViewController:questionViewController animated:YES];
 }
 
 @end
