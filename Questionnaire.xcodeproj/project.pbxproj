@@ -338,11 +338,10 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0620;
-				ORGANIZATIONNAME = "Maximilian Litteral";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					A71B1E8E1ACFDA100072EE98 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = U6J8328WE2;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -351,7 +350,7 @@
 					};
 					A71B1EA71ACFDA110072EE98 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = U6J8328WE2;
+						DevelopmentTeam = QX3QKE8RP4;
 						TestTargetID = A71B1E8E1ACFDA100072EE98;
 					};
 				};
@@ -477,7 +476,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Snaheth Thumathy (QX3QKE8RP4)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -519,7 +519,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Snaheth Thumathy (QX3QKE8RP4)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
