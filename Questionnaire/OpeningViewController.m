@@ -35,7 +35,7 @@
 
 #pragma mark - TextFieldDelegate
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
 }
@@ -76,7 +76,12 @@
 
 - (void)setupBasicUI{
     //Background color.
-    self.view.backgroundColor = [UIColor colorWithRed:90/255.0 green:140/255.0 blue:195/255.0 alpha:1.0f];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    gradient.colors = @[(id)[UIColor colorWithRed:0.35 green:0.55 blue:0.76 alpha:1].CGColor,
+                        (id)[UIColor colorWithRed:0.65 green:0.34 blue:0.34 alpha:1].CGColor];
+    [self.view.layer addSublayer:gradient];
+//    self.view.backgroundColor = [UIColor colorWithRed:90/255.0 green:140/255.0 blue:195/255.0 alpha:1.0f];
     
     //App logo.
     UIImage *logoImage = [UIImage imageNamed:@"OpeningPageLogo"];
@@ -86,8 +91,8 @@
     [self.view addSubview:logoView];
     
     //App Title.
-    NSString *yourString = @"QuestionnAIRE";
-    NSRange boldedRange = NSMakeRange(9, 4);
+    NSString *yourString = @"QuestionnAIR";
+    NSRange boldedRange = NSMakeRange(9, 3);
     NSRange normalRange = NSMakeRange(0,9);
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:yourString];
     [attrString beginEditing];

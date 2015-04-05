@@ -8,7 +8,9 @@
 
 #import "QuestionViewController.h"
 
-@interface QuestionViewController ()
+#import "MLTextFieldTableCell.h"
+
+@interface QuestionViewController () <MLTextFieldFullTableViewCellDelegate>
 
 @end
 
@@ -16,6 +18,7 @@
 {
     NSArray *options;
     UIView *headerView;
+    BOOL isOpenEnded;
 }
 
 - (void)viewDidLoad {
@@ -35,6 +38,7 @@
     questionLabel.numberOfLines = 0;
     [self.question fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         questionLabel.text = [object objectForKey:@"text"];
+        isOpenEnded = [[object objectForKey:@"openEnded"] boolValue];
     }];
     questionLabel.textAlignment = NSTextAlignmentCenter;
     questionLabel.textColor = [UIColor whiteColor];
@@ -53,15 +57,25 @@
     
     // Register cells
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    //If touch is in specific uiview, take action and "click that uiview."
+    [self.tableView registerClass:[MLTextFieldFullTableViewCell class] forCellReuseIdentifier:@"TextFieldCell"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - MLTextFieldFullTableViewCellDelegate
+
+- (void)cellDidBeginEditing:(MLTextFieldFullTableViewCell *)cell {
+    
+}
+
+- (void)cellDidEndEditing:(MLTextFieldFullTableViewCell *)cell {
+    PFObject *reply = [PFObject objectWithClassName:@"Reply"];
+    [reply setObject:cell.textField.text forKey:@"text"];
+    [reply setObject:self.question forKey:@"question"];
+    [reply saveInBackground];
 }
 
 #pragma mark - Table view data source
@@ -73,17 +87,29 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+    if (isOpenEnded) {
+        return 1;
+    }
     return [options count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell;
     
-    // Configure the cell...
-    PFObject *option = options[indexPath.row];
-    cell.textLabel.text = [option objectForKey:@"text"];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.backgroundColor = [UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1];
+    if (isOpenEnded) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"TextFieldCell" forIndexPath:indexPath];
+        MLTextFieldFullTableViewCell *textFieldCell = (MLTextFieldFullTableViewCell *)cell;
+        textFieldCell.placeholder = @"Enter a reply...";
+        textFieldCell.delegate = self;
+    }
+    else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        
+        PFObject *option = options[indexPath.row];
+        cell.textLabel.text = [option objectForKey:@"text"];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1];
+    }
     
     return cell;
 }

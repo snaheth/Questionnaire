@@ -43,16 +43,27 @@
     [self.tableView registerClass:[QuestionTableViewCell class] forCellReuseIdentifier:@"Cell"];
     
     // Request location
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = 0;
     if ([CLLocationManager authorizationStatus] == 0) {
-        locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate = self;
         [locationManager requestWhenInUseAuthorization];
+    }
+    else {
+        [locationManager startUpdatingLocation];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self reloadData];
+    CLLocation *location = locationManager.location;
+    [self reloadData:location];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [locationManager stopUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,8 +76,14 @@
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse |
         status == kCLAuthorizationStatusAuthorizedAlways) {
-        [self reloadData];
+        CLLocation *location = locationManager.location;
+        [self reloadData:location];
     }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = locations[0];
+    [self reloadData:location];
 }
 
 #pragma mark - Actions
@@ -77,22 +94,23 @@
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
-- (void)reloadData {
-    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
-        PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-        [query whereKey:@"originLocation" nearGeoPoint:geoPoint withinKilometers:2];
-        
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (error == nil) {
-                questions = objects;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                });
-            }
-            else {
-                NSLog(@"Error: %@", error);
-            }
-        }];
+- (void)reloadData:(CLLocation *)location {
+    NSLog(@"%f", location.coordinate.latitude);
+    PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLocation:location];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
+    [query whereKey:@"originLocation" nearGeoPoint:geoPoint withinMiles:0.1];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error == nil) {
+            questions = objects;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
+        else {
+            NSLog(@"Error: %@", error);
+        }
     }];
 }
 
