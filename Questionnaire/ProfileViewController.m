@@ -10,7 +10,7 @@
 #import "QuestionTableViewCell.h"
 
 @interface ProfileViewController ()
-
+@property UILabel *scoreLabel;
 @end
 
 @implementation ProfileViewController
@@ -20,7 +20,7 @@
     UIImageView *profPicView;
     UILabel *nameLabel;
 }
-
+@synthesize scoreLabel;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -32,6 +32,23 @@
     
     headerView.backgroundColor = self.tableView.backgroundColor;
     
+    scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 146, 250, 60)];
+    [[PFUser currentUser] fetch];
+    NSNumber *scoreVal = [PFUser currentUser][@"score"];
+    NSInteger aVal = [scoreVal integerValue];
+    NSLog(@"OUR INITIAL SCORE IS: %d" , aVal);
+    NSString *scoreStr = @"+";
+    scoreStr = [NSString stringWithFormat:@"%@%@" , scoreStr, scoreVal];
+    scoreLabel.text = scoreStr;
+    scoreLabel.font = [UIFont fontWithName:@"Lato-Bold" size:15.0f];
+    scoreLabel.numberOfLines = 1;
+    scoreLabel.textColor = [UIColor colorWithRed:185/255.0f green:235/255.0f blue:236/255.0f alpha:1.0f];
+    scoreLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+    scoreLabel.textAlignment = NSTextAlignmentLeft;
+    scoreLabel.translatesAutoresizingMaskIntoConstraints = false;
+    [headerView addSubview:scoreLabel];
+    
+    
     nameLabel = [[UILabel alloc] init];
     nameLabel.numberOfLines = 1;
     nameLabel.text = @"Snaheth Thumathy";
@@ -41,6 +58,7 @@
     nameLabel.textAlignment = NSTextAlignmentLeft;
     nameLabel.translatesAutoresizingMaskIntoConstraints = false;
     [headerView addSubview:nameLabel];
+    
     
     profPicView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Person"]];
     profPicView.layer.cornerRadius = 35.0f;
@@ -61,7 +79,6 @@
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.translatesAutoresizingMaskIntoConstraints = false;
     [headerView addSubview:titleLabel];
-    
     
     
     
@@ -133,22 +150,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    UILabel *scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 146, 250, 60)];
-    [[PFUser currentUser] fetch];
-    NSNumber *scoreVal = [PFUser currentUser][@"score"];
-    NSInteger aVal = (NSInteger) scoreVal;
-    NSLog(@"%d" , aVal);
-    NSString *scoreStr = @"+";
-    scoreStr = [NSString stringWithFormat:@"%@%@" , scoreStr, scoreVal];
-    scoreLabel.text = scoreStr;
-    scoreLabel.font = [UIFont fontWithName:@"Lato-Bold" size:15.0f];
-    scoreLabel.numberOfLines = 1;
-    scoreLabel.textColor = [UIColor colorWithRed:185/255.0f green:235/255.0f blue:236/255.0f alpha:1.0f];
-    scoreLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-    scoreLabel.textAlignment = NSTextAlignmentLeft;
-    scoreLabel.translatesAutoresizingMaskIntoConstraints = false;
-    [headerView addSubview:scoreLabel];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Question"];
     [query whereKey:@"user" equalTo:[PFUser currentUser]];

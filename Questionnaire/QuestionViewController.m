@@ -126,9 +126,10 @@
     PFObject *option = options[indexPath.row];
     NSNumber *votes = [option objectForKey:@"votes"];
     NSNumber *scoreValue = [PFUser currentUser][@"score"];
-    NSInteger scoreIntValue = (NSInteger)scoreValue;
+    NSInteger scoreIntValue = [scoreValue integerValue];
     [[PFUser currentUser] setObject: [NSNumber numberWithInteger:scoreIntValue + 1] forKey:@"score"];
     [[PFUser currentUser] saveInBackground];
+    NSLog(@"OUR CHANGED SCORE IS: %d" , scoreIntValue + 1);
     [option setObject:[NSNumber numberWithInteger:votes.integerValue+1] forKey:@"votes"];
     [option save];
 }
