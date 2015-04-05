@@ -34,9 +34,14 @@ typedef NS_ENUM(NSInteger, QuestionType) {
     
     id currentResponder;
 }
+@synthesize locManager , userLoc;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    locManager = [[CLLocationManager alloc] init];
+    locManager.delegate = self;
+    [locManager startUpdatingLocation];
     
     self.title = @"Ask Question";
     self.tableView.backgroundColor = [UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1];
@@ -86,6 +91,10 @@ typedef NS_ENUM(NSInteger, QuestionType) {
     
 }
 
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    userLoc = locations[0];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -133,6 +142,9 @@ typedef NS_ENUM(NSInteger, QuestionType) {
     if (point != nil) {
         [newQuestion setObject:point forKey:@"originLocation"];
     }
+    
+    //The location will come from lines 91-92, which define the variable userLoc. You can convert a CLLocation to a Parse PFGeoPoint to store location in servers. 
+    
     
     // Add the options
     if (questionType == QuestionTypeYesNo) {
