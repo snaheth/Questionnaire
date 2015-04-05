@@ -71,6 +71,7 @@
 		97E0772C1AD02C6400756AC8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		97E0772D1AD02C6400756AC8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		97E0772F1AD0531D00756AC8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		A7018AEA1AD0C4FB0056AD93 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		A71B1E8F1ACFDA100072EE98 /* Questionnaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Questionnaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71B1E931ACFDA100072EE98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A71B1E941ACFDA100072EE98 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -277,6 +278,7 @@
 				A759BDB21AD09BC9001464D5 /* QuestionsViewController.m */,
 				A759BDB51AD0A1F3001464D5 /* LocalSkyViewController.h */,
 				A759BDB61AD0A1F3001464D5 /* LocalSkyViewController.m */,
+				A7018AEA1AD0C4FB0056AD93 /* Location.gpx */,
 				A759BD851AD03975001464D5 /* FriendQuestionsViewController.h */,
 				A759BD861AD03975001464D5 /* FriendQuestionsViewController.m */,
 			);
@@ -345,6 +347,7 @@
 				TargetAttributes = {
 					A71B1E8E1ACFDA100072EE98 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = U6J8328WE2;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -353,7 +356,7 @@
 					};
 					A71B1EA71ACFDA110072EE98 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = QX3QKE8RP4;
+						DevelopmentTeam = U6J8328WE2;
 						TestTargetID = A71B1E8E1ACFDA100072EE98;
 					};
 				};
