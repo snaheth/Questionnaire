@@ -11,7 +11,7 @@
 #import "MLTextFieldTableCell.h"
 
 @interface QuestionViewController () <MLTextFieldFullTableViewCellDelegate>
-
+@property NSInteger importantIndex;
 @end
 
 @implementation QuestionViewController
@@ -20,16 +20,19 @@
     UIView *headerView;
     BOOL isOpenEnded;
 }
-
+@synthesize importantIndex;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.27 green:0.5 blue:0.56 alpha:1];
     
-    // Fetch
+    
+    //Fetch
     options = [self.question objectForKey:@"options"];
     for (PFObject *object in options) {
         [object fetchIfNeeded];
     }
+    
+    importantIndex = [self getHighestOption];
     
     // Header view
     headerView = [[UIView alloc] init];
@@ -93,6 +96,22 @@
     return [options count];
 }
 
+-(NSInteger)getHighestOption{
+    NSInteger highestCount = 0;
+    int index = 0;
+    for(int i =0; i < [options count]; i++){
+        PFObject *obj = [options objectAtIndex:i];
+        NSNumber *num = obj[@"count"];
+        NSInteger numInt = [num integerValue];
+        if(numInt > highestCount){
+            highestCount = [obj[@"count"] integerValue];
+            index = i;
+        }
+    }
+    NSLog(@"%d" , index);
+    return index;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     if (isOpenEnded) {
@@ -103,11 +122,14 @@
     }
     else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-        
         PFObject *option = options[indexPath.row];
         cell.textLabel.text = [option objectForKey:@"text"];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.backgroundColor = [UIColor colorWithRed:0.12 green:0.69 blue:0.69 alpha:1];
+        if([indexPath row] == importantIndex){
+            cell.backgroundColor = [UIColor colorWithRed:58/255.0f green:65/255.0f blue:95/255.0f alpha:1.0f];
+        }
+        //if(cell has most votes...it is a bright color to show trending....)
     }
     return cell;
 }
